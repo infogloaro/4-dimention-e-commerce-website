@@ -331,7 +331,7 @@ export default function HomePage() {
           <button aria-label="Open navigation" onClick={() => setMenuOpen(!menuOpen)} className="rounded-full p-2 transition hover:bg-black/5 lg:hidden">
             {menuOpen ? <X size={21} /> : <Menu size={21} />}
           </button>
-          <a href="#" aria-label="GloAro home" className="shrink-0 text-[25px] font-black tracking-[-0.075em] sm:text-[27px]">Glo<span className="text-[#85964b]">Aro</span></a>
+          <a href="#" aria-label="Glotron home" className="shrink-0 text-[25px] font-black tracking-[-0.075em] sm:text-[27px]">Glo<span className="text-[#85964b]">tron</span></a>
           <nav aria-label="Main navigation" className="hidden items-center gap-1 text-sm font-semibold text-[#4d5832] lg:flex">
             {shopNavigation.map((item) => (
               <a
@@ -766,8 +766,8 @@ export default function HomePage() {
         <div className="mx-auto max-w-[1440px]">
           <div className="grid gap-10 border-b border-white/15 pb-10 sm:grid-cols-2 lg:grid-cols-[1.35fr_1fr_1fr_1fr]">
             <div>
-              <a href="#" aria-label="GloAro home" className="text-4xl font-black tracking-[-0.09em]">
-                Glo<span className="text-[#d6ed79]">Aro</span>
+              <a href="#" aria-label="Glotron home" className="text-4xl font-black tracking-[-0.09em]">
+                Glo<span className="text-[#d6ed79]">tron</span>
               </a>
               <p className="mt-4 max-w-xs text-base font-medium leading-7 text-white/75">
                 Thoughtful electronics for everyday life. Discover smartphones, laptops, tablets and accessories in one place.
