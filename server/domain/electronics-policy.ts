@@ -58,8 +58,6 @@ export const PROHIBITED_CATEGORY_TERMS = [
   "jewelry",
   "jewellery",
   "sports",
-  "sports-fitness",
-  "fitness",
   "gym",
   "athletic",
   "lifestyle",

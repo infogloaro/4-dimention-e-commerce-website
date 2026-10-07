@@ -9,6 +9,7 @@ import { registerBody } from "@/server/validation/auth";
 import { createProductBody, updateProductBody } from "@/server/validation/catalog";
 import { ROLE_DEFINITIONS, PERMISSIONS } from "@/server/auth/permissions";
 import { normalizeQuery } from "@/server/services/catalog/search";
+import { assertElectronicsProduct, containsProhibitedCategoryTerm } from "@/server/domain/electronics-policy";
 import type { OrderStatus } from "@/server/db/generated/client";
 
 describe("order state machine", () => {
@@ -117,6 +118,14 @@ describe("validation", () => {
   });
   it("does not inject defaults into partial product updates", () => {
     expect(updateProductBody.parse({ name: "New name" })).toEqual({ name: "New name" });
+  });
+});
+
+describe("electronics policy", () => {
+  it("allows fitness-tracking electronics while blocking actual non-electronics", () => {
+    expect(containsProhibitedCategoryTerm("Fitness Tracker")).toBeNull();
+    expect(() => assertElectronicsProduct("Smart Fitness Tracker", undefined, ["fitness", "wearables", "gps"])).not.toThrow();
+    expect(() => assertElectronicsProduct("Leather Gym Bag", undefined, ["fitness", "travel"])).toThrow();
   });
 });
 
