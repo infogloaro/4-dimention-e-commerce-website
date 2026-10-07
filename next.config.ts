@@ -12,6 +12,15 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.dummyjson.com",
+        pathname: "/product-images/**",
+      },
+    ],
+  },
   // `pg` is loaded by the Prisma driver adapter at runtime and must not be bundled
   serverExternalPackages: ["pg"],
   async headers() {

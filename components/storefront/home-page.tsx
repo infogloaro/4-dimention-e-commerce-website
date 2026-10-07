@@ -1,14 +1,15 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import {
-  ArrowDownRight, ArrowRight, ArrowUpRight, Filter, Headphones, Heart, Laptop, Menu,
+  ArrowRight, ArrowUpRight, Filter, Headphones, Heart, Laptop, Menu,
   Search, ShoppingBag, Smartphone, Sparkles, X, Zap,
 } from "lucide-react";
 import { CHECKOUT_STORAGE_KEY } from "./checkout-data";
 import NewArrivalsCarousel from "./NewArrivalsCarousel/NewArrivalsCarousel";
+import ProductDNASection from "./ProductDNASection";
 import { fetchElectronicsProducts, type StoreProduct } from "@/services/product-api";
 
 type CartItem = {
@@ -55,25 +56,6 @@ const photo = (id: string, width = 900) =>
 
 export default function HomePage() {
   const router = useRouter();
-  const prefersReducedMotion = useReducedMotion();
-  const heroDuration = prefersReducedMotion ? 0 : 0.52;
-  const heroCopyVariants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 15 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: heroDuration, ease: [0.22, 1, 0.36, 1] as const },
-    },
-  };
-  const heroCopyGroupVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        delayChildren: prefersReducedMotion ? 0 : 0.08,
-        staggerChildren: prefersReducedMotion ? 0 : 0.12,
-      },
-    },
-  };
   const [category, setCategory] = useState("all");
   const [query, setQuery] = useState("");
   const [filterOpen, setFilterOpen] = useState(false);
@@ -435,71 +417,7 @@ export default function HomePage() {
         onToggleWishlist={toggleWishlist}
       />
 
-      <section id="discover" className="mx-auto grid max-w-[1440px] gap-5 px-4 pb-12 pt-5 sm:px-8 lg:grid-cols-[1.04fr_0.96fr] lg:gap-6 lg:px-12 lg:pb-20 lg:pt-7">
-        <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }} className="relative flex min-h-[470px] flex-col justify-between overflow-hidden rounded-[5px] bg-[#e7e7dc] p-7 sm:min-h-[560px] sm:p-10 lg:min-h-[650px] lg:p-14">
-          <div className="pointer-events-none absolute -right-20 top-16 h-72 w-72 rounded-full border border-black/[0.08] sm:h-96 sm:w-96" />
-          <div className="pointer-events-none absolute -right-6 top-32 h-56 w-56 rounded-full border border-black/[0.08] sm:h-72 sm:w-72" />
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={heroCopyGroupVariants}
-            className="relative z-10 flex items-center gap-2 text-[10px] tracking-[0.2em] text-[#68695e] sm:text-[11px]"
-          >
-            <Sparkles size={13} />
-            <motion.span variants={heroCopyVariants}>TECH FOR EVERYDAY INDIA</motion.span>
-          </motion.div>
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={heroCopyGroupVariants}
-            className="relative z-10 max-w-xl py-10"
-          >
-            <motion.p variants={heroCopyVariants} className="mb-5 text-xs font-medium tracking-[0.18em] text-[#77786c]">
-              SMARTER FINDS. EVERYDAY VALUE.
-            </motion.p>
-            <motion.h1
-              variants={heroCopyVariants}
-              className="text-[clamp(3.2rem,6.2vw,6.4rem)] font-medium leading-[0.91] tracking-[-0.075em]"
-            >
-              Good tech for<br />
-              <span className="font-serif italic font-normal text-[#758446]">the way you live.</span>
-            </motion.h1>
-            <motion.p variants={heroCopyVariants} className="mt-7 max-w-sm text-sm leading-6 text-[#66675d] sm:text-[15px] sm:leading-7">
-              From smartphones and laptops to everyday upgrades, find your next favourite at GloAro.
-            </motion.p>
-            <motion.div variants={heroCopyVariants} className="mt-8 flex flex-wrap items-center gap-4">
-              <a
-                href="#edit"
-                onClick={() => setCategory("all")}
-                className="group inline-flex items-center gap-4 rounded-full bg-[#24251f] px-6 py-4 text-xs font-semibold text-white transition duration-300 hover:bg-[#505342]"
-              >
-                Shop electronics <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-              </a>
-              <a
-                href="#new-arrivals"
-                className="group inline-flex items-center gap-2 border-b border-[#8a8b80] py-3 text-xs font-semibold text-[#42443a] transition-colors hover:border-[#758446] hover:text-[#758446]"
-              >
-                Explore new arrivals <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-              </a>
-            </motion.div>
-          </motion.div>
-          <div className="relative z-10 flex items-end justify-between border-t border-black/10 pt-5 text-[10px] tracking-[0.13em] text-[#707166]">
-            <span>TECH FOR EVERYDAY INDIA</span><span>01 — 04</span>
-          </div>
-        </motion.div>
-
-        <motion.div initial={{ opacity: 0, scale: 0.985 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1, delay: 0.1 }} className="group relative min-h-[390px] overflow-hidden rounded-[5px] bg-[#d8d4ca] sm:min-h-[500px] lg:min-h-[650px]">
-          <motion.div className="absolute inset-0" initial={{ scale: 1.12 }} animate={{ scale: 1 }} transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}>
-            <img src={photo("photo-1496181133206-80ce9b88a853", 1400)} alt="A thoughtfully designed laptop for everyday work" className="h-full w-full object-cover object-center transition-transform duration-[1400ms] group-hover:scale-[1.045]" />
-          </motion.div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/10" />
-          <div className="absolute left-6 top-6 rounded-full border border-white/50 bg-white/10 px-4 py-2 text-[10px] tracking-[0.15em] text-white backdrop-blur-md">THE TECH EDIT · NO. 01</div>
-          <div className="absolute inset-x-6 bottom-7 flex items-end justify-between gap-4 text-white sm:inset-x-9 sm:bottom-9">
-            <div><p className="mb-2 text-[10px] tracking-[0.19em] text-white/70">TECH THAT EARNS ITS PLACE</p><h2 className="max-w-xs text-3xl font-medium tracking-[-0.055em] sm:text-5xl">Everyday,<br />upgraded.</h2></div>
-            <a href="#categories" aria-label="Explore categories" className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#d6ed79] text-[#22231f] transition duration-300 hover:rotate-45"><ArrowDownRight size={23} /></a>
-          </div>
-        </motion.div>
-      </section>
+      <ProductDNASection products={apiProducts} status={apiProductsStatus} />
 
       <section id="categories" className="mx-auto max-w-[1440px] px-5 py-10 sm:px-8 lg:px-12 lg:py-16">
         <div className="mb-7 flex items-end justify-between gap-4 sm:mb-10">
