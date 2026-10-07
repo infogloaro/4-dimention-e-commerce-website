@@ -1,0 +1,6131 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "4D Commerce API",
+    "version": "1.0.0",
+    "description": "Generated from route handlers. Request/response schemas live in server/validation (Zod); see docs/backend/FRONTEND_INTEGRATION.md for the envelope."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "cookieAuth": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "fourd_session"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "paths": {
+    "/api/v1/auth/change-password": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "POST /api/v1/auth/change-password",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/forgot-password": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "POST /api/v1/auth/forgot-password",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/login": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "POST /api/v1/auth/login",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/logout": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "POST /api/v1/auth/logout",
+        "parameters": [],
+        "security": [
+          {},
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/me": {
+      "get": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "GET /api/v1/auth/me",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "PATCH /api/v1/auth/me",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/phone/request": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "POST /api/v1/auth/phone/request",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/phone/verify": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "POST /api/v1/auth/phone/verify",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/refresh": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "POST /api/v1/auth/refresh",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/register": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "POST /api/v1/auth/register",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/resend-verification": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "POST /api/v1/auth/resend-verification",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/reset-password": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "POST /api/v1/auth/reset-password",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/sessions": {
+      "get": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "GET /api/v1/auth/sessions",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/sessions/{id}": {
+      "delete": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "DELETE /api/v1/auth/sessions/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/auth/verify-email": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "POST /api/v1/auth/verify-email",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/products": {
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "summary": "GET /api/v1/products",
+        "parameters": [],
+        "security": [
+          {},
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/products/{slug}": {
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "summary": "GET /api/v1/products/:slug",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/products/{slug}/questions": {
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "summary": "GET /api/v1/products/:slug/questions",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "products"
+        ],
+        "summary": "POST /api/v1/products/:slug/questions",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/products/{slug}/recommendations": {
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "summary": "Grouped recommendations for the PDP: one request instead of three.",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/products/{slug}/reviews": {
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "summary": "GET /api/v1/products/:slug/reviews",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {},
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "products"
+        ],
+        "summary": "POST /api/v1/products/:slug/reviews",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/products/{slug}/view": {
+      "post": {
+        "tags": [
+          "products"
+        ],
+        "summary": "Fire from the product page after render to feed \"Recently viewed\" and popularity.",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {},
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/products/compare": {
+      "get": {
+        "tags": [
+          "products"
+        ],
+        "summary": "GET /api/v1/products/compare",
+        "parameters": [],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/categories": {
+      "get": {
+        "tags": [
+          "categories"
+        ],
+        "summary": "Full nested category tree with product counts — one cached call powers mega-menus and category rails.",
+        "parameters": [],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/categories/{slug}": {
+      "get": {
+        "tags": [
+          "categories"
+        ],
+        "summary": "GET /api/v1/categories/:slug",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/brands": {
+      "get": {
+        "tags": [
+          "brands"
+        ],
+        "summary": "GET /api/v1/brands",
+        "parameters": [],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/brands/{slug}": {
+      "get": {
+        "tags": [
+          "brands"
+        ],
+        "summary": "GET /api/v1/brands/:slug",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/collections": {
+      "get": {
+        "tags": [
+          "collections"
+        ],
+        "summary": "GET /api/v1/collections",
+        "parameters": [],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/collections/{slug}": {
+      "get": {
+        "tags": [
+          "collections"
+        ],
+        "summary": "Collection metadata. Fetch its products via GET /products?collection=<slug>.",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/search": {
+      "get": {
+        "tags": [
+          "search"
+        ],
+        "summary": "GET /api/v1/search",
+        "parameters": [],
+        "security": [
+          {},
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/search/suggest": {
+      "get": {
+        "tags": [
+          "search"
+        ],
+        "summary": "Lightweight autocomplete: top products (mini cards), categories, brands, popular queries, did-you-mean.",
+        "parameters": [],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/search/trending": {
+      "get": {
+        "tags": [
+          "search"
+        ],
+        "summary": "GET /api/v1/search/trending",
+        "parameters": [],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/recommendations": {
+      "get": {
+        "tags": [
+          "recommendations"
+        ],
+        "summary": "Home-page recommendation groups in one call.",
+        "parameters": [],
+        "security": [
+          {},
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/recently-viewed": {
+      "get": {
+        "tags": [
+          "recently-viewed"
+        ],
+        "summary": "GET /api/v1/recently-viewed",
+        "parameters": [],
+        "security": [
+          {},
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "recently-viewed"
+        ],
+        "summary": "DELETE /api/v1/recently-viewed",
+        "parameters": [],
+        "security": [
+          {},
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/cart": {
+      "get": {
+        "tags": [
+          "cart"
+        ],
+        "summary": "GET /api/v1/cart",
+        "parameters": [],
+        "security": [
+          {},
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "cart"
+        ],
+        "summary": "DELETE /api/v1/cart",
+        "parameters": [],
+        "security": [
+          {},
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/cart/coupon": {
+      "post": {
+        "tags": [
+          "cart"
+        ],
+        "summary": "POST /api/v1/cart/coupon",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {},
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "cart"
+        ],
+        "summary": "DELETE /api/v1/cart/coupon",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {},
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/cart/items": {
+      "post": {
+        "tags": [
+          "cart"
+        ],
+        "summary": "POST /api/v1/cart/items",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {},
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/cart/items/{id}": {
+      "patch": {
+        "tags": [
+          "cart"
+        ],
+        "summary": "PATCH /api/v1/cart/items/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {},
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "cart"
+        ],
+        "summary": "DELETE /api/v1/cart/items/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {},
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/cart/merge": {
+      "post": {
+        "tags": [
+          "cart"
+        ],
+        "summary": "Login/register already merge automatically; this lets a client force a merge (e.g. after OAuth-style flows).",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/wishlist": {
+      "get": {
+        "tags": [
+          "wishlist"
+        ],
+        "summary": "GET /api/v1/wishlist",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "wishlist"
+        ],
+        "summary": "POST /api/v1/wishlist",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/wishlist/{productId}": {
+      "delete": {
+        "tags": [
+          "wishlist"
+        ],
+        "summary": "DELETE /api/v1/wishlist/:productId",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/wishlist/{productId}/move-to-cart": {
+      "post": {
+        "tags": [
+          "wishlist"
+        ],
+        "summary": "POST /api/v1/wishlist/:productId/move-to-cart",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/addresses": {
+      "get": {
+        "tags": [
+          "addresses"
+        ],
+        "summary": "GET /api/v1/addresses",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "addresses"
+        ],
+        "summary": "POST /api/v1/addresses",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/addresses/{id}": {
+      "get": {
+        "tags": [
+          "addresses"
+        ],
+        "summary": "GET /api/v1/addresses/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "addresses"
+        ],
+        "summary": "PATCH /api/v1/addresses/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "addresses"
+        ],
+        "summary": "DELETE /api/v1/addresses/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/addresses/{id}/default": {
+      "post": {
+        "tags": [
+          "addresses"
+        ],
+        "summary": "POST /api/v1/addresses/:id/default",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/shipping/estimate": {
+      "get": {
+        "tags": [
+          "shipping"
+        ],
+        "summary": "Delivery-by-pincode checker for the product page / cart.",
+        "parameters": [],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/checkout/create": {
+      "post": {
+        "tags": [
+          "checkout"
+        ],
+        "summary": "Creates the order (reserving stock) and, for ONLINE payments, the payment attempt. Requires an `Idempotency-Key` header: retrying with the same key never creates a second order.",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/checkout/validate": {
+      "post": {
+        "tags": [
+          "checkout"
+        ],
+        "summary": "Dry-run: server-authoritative totals, shipping options, coupon results and stock issues. Creates nothing.",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/payments/confirm": {
+      "post": {
+        "tags": [
+          "payments"
+        ],
+        "summary": "Client reports the provider result; the server verifies it with the provider before changing anything. Idempotent.",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/payments/webhooks/{provider}": {
+      "post": {
+        "tags": [
+          "payments"
+        ],
+        "summary": "Provider → us. No session/CSRF (it's server-to-server); authenticity comes from the provider signature, which is verified over the RAW body. Duplicate deliveries are acknowledged without re-processing.",
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/orders": {
+      "get": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "GET /api/v1/orders",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/orders/{id}": {
+      "get": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "`id` may be the order UUID or the human order number (4D-YYMMDD-XXXXXX).",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/orders/{id}/cancel": {
+      "post": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "POST /api/v1/orders/:id/cancel",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/orders/{id}/invoice": {
+      "get": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "Structured invoice data; the frontend renders / prints it (PDF generation is a client concern).",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/orders/{id}/pay": {
+      "post": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "Retry payment for an order still waiting for it (reuses an open attempt if there is one).",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/orders/{id}/returns": {
+      "post": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "POST /api/v1/orders/:id/returns",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/tracking/{id}": {
+      "get": {
+        "tags": [
+          "tracking"
+        ],
+        "summary": "Lean tracking payload for the animated timeline: progress stages, events, shipments, ETA.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/returns": {
+      "get": {
+        "tags": [
+          "returns"
+        ],
+        "summary": "GET /api/v1/returns",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/returns/{id}": {
+      "get": {
+        "tags": [
+          "returns"
+        ],
+        "summary": "GET /api/v1/returns/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/returns/{id}/cancel": {
+      "post": {
+        "tags": [
+          "returns"
+        ],
+        "summary": "POST /api/v1/returns/:id/cancel",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/reviews": {
+      "get": {
+        "tags": [
+          "reviews"
+        ],
+        "summary": "The signed-in customer's own reviews (all statuses).",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/reviews/{id}": {
+      "patch": {
+        "tags": [
+          "reviews"
+        ],
+        "summary": "PATCH /api/v1/reviews/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "reviews"
+        ],
+        "summary": "DELETE /api/v1/reviews/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/reviews/{id}/helpful": {
+      "post": {
+        "tags": [
+          "reviews"
+        ],
+        "summary": "Toggles the caller's \"helpful\" vote.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/coupons/available": {
+      "get": {
+        "tags": [
+          "coupons"
+        ],
+        "summary": "Publicly advertised offers for cart / checkout banners.",
+        "parameters": [],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/notifications": {
+      "get": {
+        "tags": [
+          "notifications"
+        ],
+        "summary": "GET /api/v1/notifications",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "notifications"
+        ],
+        "summary": "Mark all (no body ids) or specific notifications as read.",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/support/tickets": {
+      "get": {
+        "tags": [
+          "support"
+        ],
+        "summary": "GET /api/v1/support/tickets",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "support"
+        ],
+        "summary": "POST /api/v1/support/tickets",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/support/tickets/{id}": {
+      "get": {
+        "tags": [
+          "support"
+        ],
+        "summary": "GET /api/v1/support/tickets/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "support"
+        ],
+        "summary": "POST /api/v1/support/tickets/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/home": {
+      "get": {
+        "tags": [
+          "home"
+        ],
+        "summary": "Everything the home page needs, assembled from admin-managed sections (hero, rails, promos, personalised, recently viewed).",
+        "parameters": [],
+        "security": [
+          {},
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/content/{placement}": {
+      "get": {
+        "tags": [
+          "content"
+        ],
+        "summary": "Active banners / promos for a placement, e.g. `category:audio`, `site.announcement`.",
+        "parameters": [
+          {
+            "name": "placement",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/settings/public": {
+      "get": {
+        "tags": [
+          "settings"
+        ],
+        "summary": "GET /api/v1/settings/public",
+        "parameters": [],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/analytics/customers": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "GET /api/v1/admin/analytics/customers",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "analytics:read"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/analytics/products": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Top products and category performance for the range.",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "analytics:read"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/analytics/sales": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "GET /api/v1/admin/analytics/sales",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "analytics:read"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/audit-logs": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "GET /api/v1/admin/audit-logs",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "audit:read"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/brands": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "GET /api/v1/admin/brands",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "product:read",
+          "brand:write"
+        ],
+        "x-permission-mode": "any",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "POST /api/v1/admin/brands",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "brand:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/brands/{id}": {
+      "patch": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "PATCH /api/v1/admin/brands/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "brand:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "DELETE /api/v1/admin/brands/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "brand:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/categories": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "GET /api/v1/admin/categories",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "product:read",
+          "category:write"
+        ],
+        "x-permission-mode": "any",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "POST /api/v1/admin/categories",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "category:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/categories/{id}": {
+      "patch": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "PATCH /api/v1/admin/categories/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "category:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "DELETE /api/v1/admin/categories/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "category:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/categories/reorder": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "POST /api/v1/admin/categories/reorder",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "category:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/collections": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "GET /api/v1/admin/collections",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "product:read",
+          "collection:write"
+        ],
+        "x-permission-mode": "any",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "POST /api/v1/admin/collections",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "collection:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/collections/{id}": {
+      "patch": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "PATCH /api/v1/admin/collections/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "collection:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "DELETE /api/v1/admin/collections/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "collection:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/content/blocks": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "GET /api/v1/admin/content/blocks",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "content:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "POST /api/v1/admin/content/blocks",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "content:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/content/blocks/{id}": {
+      "patch": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "PATCH /api/v1/admin/content/blocks/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "content:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "DELETE /api/v1/admin/content/blocks/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "content:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/content/sections": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "GET /api/v1/admin/content/sections",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "content:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Create or replace a home section by `key`.",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "content:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "PATCH /api/v1/admin/content/sections",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "content:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/content/sections/{id}": {
+      "delete": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "DELETE /api/v1/admin/content/sections/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "content:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/coupons": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "GET /api/v1/admin/coupons",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "coupon:read"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "POST /api/v1/admin/coupons",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "coupon:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/coupons/{id}": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Coupon + usage analytics (uses, total discount, revenue influenced, unique users, recent redemptions).",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "coupon:read"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Also the activate / deactivate switch: PATCH { isActive }.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "coupon:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "DELETE /api/v1/admin/coupons/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "coupon:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/customers": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "GET /api/v1/admin/customers",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "customer:read"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/customers/{id}": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "GET /api/v1/admin/customers/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "customer:read"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/customers/{id}/status": {
+      "patch": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Suspend / ban / reactivate. Non-active statuses immediately revoke every session. Audited.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "customer:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/dashboard": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "KPIs, 30-day trend, top products, low stock, recent orders — served from rollups + a 30 s cache.",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "dashboard:read"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/inventory": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "GET /api/v1/admin/inventory",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "inventory:read"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/inventory/{variantId}": {
+      "patch": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Low-stock threshold / backorder policy for one variant.",
+        "parameters": [
+          {
+            "name": "variantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "inventory:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/inventory/adjust": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Signed stock adjustment with a mandatory reason. Cannot push on-hand below reserved units. Audited.",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "inventory:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/inventory/low-stock": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "GET /api/v1/admin/inventory/low-stock",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "inventory:read"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/inventory/movements": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "GET /api/v1/admin/inventory/movements",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "inventory:read"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/inventory/receive": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Record a supplier receipt (restock). `reference` is unique, so a double-submit cannot double-count stock.",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "inventory:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/media/sign": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Ask where to upload. `mode: \"direct\"` (S3/Cloudinary) returns a presigned request the browser sends straight to object storage; `mode: \"server\"` (local dev) means POST the file to /admin/media/upload.",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "product:write",
+          "content:write",
+          "category:write",
+          "brand:write"
+        ],
+        "x-permission-mode": "any",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/media/upload": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Server-side upload (local storage provider only). File content is sniffed — the declared type is never trusted.",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "product:write",
+          "content:write",
+          "category:write",
+          "brand:write"
+        ],
+        "x-permission-mode": "any",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/orders": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "GET /api/v1/admin/orders",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "order:read"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/orders/{id}": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "GET /api/v1/admin/orders/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "order:read"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/orders/{id}/refunds": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Manual (partial or full) refund. `Idempotency-Key` required: a retried request can never refund twice.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "order:refund"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/orders/{id}/shipments": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "POST /api/v1/admin/orders/:id/shipments",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "order:update",
+          "shipping:manage"
+        ],
+        "x-permission-mode": "any",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/orders/{id}/status": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Move an order along the state machine; illegal transitions return ORDER_STATE_INVALID with the allowed targets.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "order:update"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/orders/{id}/tracking": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "POST /api/v1/admin/orders/:id/tracking",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "order:update"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/products": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "GET /api/v1/admin/products",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "product:read"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "POST /api/v1/admin/products",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "product:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/products/{id}": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "GET /api/v1/admin/products/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "product:read"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "PATCH /api/v1/admin/products/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "product:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Soft delete: product is archived and hidden; order history keeps its snapshots.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "product:delete"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/products/{id}/variants": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "POST /api/v1/admin/products/:id/variants",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "product:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/products/bulk": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "POST /api/v1/admin/products/bulk",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "product:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/questions": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "GET /api/v1/admin/questions",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "review:moderate"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/questions/{id}": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Post an official answer (also approves the question).",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "review:moderate"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Approve / reject a customer question.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "review:moderate"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/refunds/{id}/process": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Confirm an offline refund (COD / bank transfer) has been paid out. Idempotent.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "order:refund"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/returns": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "GET /api/v1/admin/returns",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "return:manage"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/returns/{id}/advance": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "PICKUP_SCHEDULED → PICKED_UP → RECEIVED. RECEIVED restocks items and triggers the refund.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "return:manage"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/returns/{id}/decision": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "POST /api/v1/admin/returns/:id/decision",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "return:manage"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/reviews": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "GET /api/v1/admin/reviews",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "review:moderate"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/reviews/{id}/moderate": {
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "POST /api/v1/admin/reviews/:id/moderate",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "review:moderate"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/roles": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "GET /api/v1/admin/roles",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "user:manage",
+          "role:manage"
+        ],
+        "x-permission-mode": "any",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/roles/{id}/permissions": {
+      "put": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Replace a role's permission set. Super-admin only (`role:manage`). Audited with before/after.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "role:manage"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/settings": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "GET /api/v1/admin/settings",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "settings:manage"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/settings/{key}": {
+      "put": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "PUT /api/v1/admin/settings/:key",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "settings:manage"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/shipments/{id}": {
+      "patch": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Carrier-style status update (Reached hub, Out for delivery, Delivered ...) — also advances the order and feeds the tracking timeline.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "order:update",
+          "shipping:manage"
+        ],
+        "x-permission-mode": "any",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/tickets": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "GET /api/v1/admin/tickets",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "support:read"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/tickets/{id}": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "GET /api/v1/admin/tickets/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "support:read"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "POST /api/v1/admin/tickets/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "support:reply"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "PATCH /api/v1/admin/tickets/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "support:reply"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/users": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Staff accounts (anyone whose role is a staff role).",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "user:manage"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "POST /api/v1/admin/users",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "user:manage"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/users/{id}/role": {
+      "patch": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Change a user's role. Revokes their sessions so the new permission set applies immediately. Audited as `user.role_changed`.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "user:manage"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/variants/{id}": {
+      "patch": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "PATCH /api/v1/admin/variants/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "product:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "DELETE /api/v1/admin/variants/:id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "product:write"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/jobs/maintenance": {
+      "post": {
+        "tags": [
+          "jobs"
+        ],
+        "summary": "Scheduler hook (EventBridge / cron / Vercel Cron): expires unpaid reservations, refreshes yesterday+today analytics, purges expired sessions/tokens/idempotency records. Authenticated with `Authorization: Bearer $JOBS_TOKEN` (min 24 chars; endpoint is disabled when unset).",
+        "parameters": [],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/health": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "Liveness + DB readiness probe.",
+        "parameters": [],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    }
+  }
+}
