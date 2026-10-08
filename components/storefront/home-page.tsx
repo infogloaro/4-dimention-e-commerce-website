@@ -820,7 +820,7 @@ export default function HomePage() {
           </div>
           <div className="flex flex-col justify-between gap-3 pt-6 text-xs font-medium text-white/65 sm:flex-row sm:items-center">
             <span>© 2026 {STORE_NAME}. All rights reserved.</span>
-            <span className="font-bold text-white/85">{STORE_NAME}</span>
+            <span>Website designed, developed and maintained by <strong className="font-bold text-white/85">GLOARO Pvt Ltd</strong>.</span>
           </div>
         </div>
       </footer>
