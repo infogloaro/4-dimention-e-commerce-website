@@ -179,7 +179,7 @@ export default function NewArrivalsCarousel({
       <div className={styles.sectionInner}>
         <div className={styles.sectionHeader}>
           <div>
-            <p className={styles.eyebrow}><span className={styles.eyebrowDot} /> THE LATEST FROM GLOARO</p>
+            <p className={styles.eyebrow}><span className={styles.eyebrowDot} /> THE LATEST FROM HI-FI ELECTRONICS</p>
             <div className={styles.headingLine}>
               <h2 id="new-arrivals-heading">New Arrivals</h2>
               <span className={styles.justInBadge}>JUST IN</span>

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, Banknote, CheckCircle2, CreditCard, Printer, Smartphone, X } from "lucide-react";
 import { CHECKOUT_STORAGE_KEY, isCheckoutItem, type CheckoutItem } from "./checkout-data";
+import { STORE_ADDRESS, STORE_NAME } from "@/lib/store-brand";
 
 type PaymentMethod = "upi" | "cash" | "card";
 type Order = {
@@ -108,7 +109,7 @@ export default function CheckoutPage() {
           <ArrowLeft size={16} /> Continue shopping
         </Link>
         <header className="mt-8 border-b border-black/10 pb-6">
-          <p className="text-[10px] tracking-[0.2em] text-[#77786f]">GLOTRON CHECKOUT</p>
+          <p className="text-[10px] tracking-[0.2em] text-[#77786f]">{STORE_NAME.toUpperCase()} CHECKOUT</p>
           <h1 className="mt-2 text-4xl font-medium tracking-[-0.06em] sm:text-5xl">Almost yours<span className="text-[#87964f]">.</span></h1>
         </header>
 
@@ -175,7 +176,8 @@ export default function CheckoutPage() {
           <section role="dialog" aria-modal="true" aria-labelledby="invoice-heading" className="max-h-[90vh] w-full max-w-xl overflow-y-auto rounded-xl bg-white p-6 text-[#20211e] shadow-2xl sm:p-8 print:max-h-none print:max-w-none print:overflow-visible print:rounded-none print:shadow-none">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="text-[10px] tracking-[0.2em] text-[#77786f]">GLOTRON</p>
+                <p className="text-[10px] font-semibold tracking-[0.12em] text-[#77786f]">{STORE_NAME.toUpperCase()}</p>
+                <p className="mt-1 text-xs leading-5 text-[#77786f]">{STORE_ADDRESS}</p>
                 <h2 id="invoice-heading" className="mt-2 text-2xl font-semibold">Order invoice</h2>
               </div>
               <button type="button" aria-label="Close invoice" onClick={() => setInvoiceOpen(false)} className="rounded-full p-2 transition hover:bg-black/5 print:hidden"><X size={20} /></button>

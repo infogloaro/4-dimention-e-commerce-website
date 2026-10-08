@@ -268,7 +268,7 @@ export default function ProductDNASection({ products, status }: ProductDNASectio
                       <Image
                         key={product.id}
                         src={product.images[0] ?? product.image}
-                        alt={`${product.name} by ${product.brand ?? "GloAro"}`}
+                        alt={`${product.name} by ${product.brand ?? "HI-FI electronics"}`}
                         fill
                         sizes="(max-width: 700px) 76vw, (max-width: 1199px) 45vw, 38vw"
                         loading="lazy"

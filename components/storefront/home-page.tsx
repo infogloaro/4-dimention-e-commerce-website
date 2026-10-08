@@ -4,13 +4,15 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import {
-  ArrowRight, ArrowUpRight, Filter, Headphones, Heart, Laptop, Menu,
+  ArrowRight, ArrowUpRight, Filter, Headphones, Heart, Laptop, MapPin, Menu,
   Search, ShoppingBag, Smartphone, Sparkles, X, Zap,
 } from "lucide-react";
 import { CHECKOUT_STORAGE_KEY } from "./checkout-data";
+import BrandLogo from "./brand-logo";
 import NewArrivalsCarousel from "./NewArrivalsCarousel/NewArrivalsCarousel";
 import ProductDNASection from "./ProductDNASection";
 import { fetchElectronicsProducts, type StoreProduct } from "@/services/product-api";
+import { STORE_ADDRESS, STORE_NAME } from "@/lib/store-brand";
 
 type CartItem = {
   product: StoreProduct;
@@ -69,7 +71,7 @@ export default function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [notice, setNotice] = useState("");
   const [globotOpen, setGlobotOpen] = useState(false);
-  const [globotReply, setGlobotReply] = useState("Hi! I'm GloBot, your friendly shopping sidekick. What can I help you find?");
+  const [globotReply, setGlobotReply] = useState("Hi! I'm your HI-FI shopping assistant. What can I help you find?");
   const [apiProducts, setApiProducts] = useState<StoreProduct[]>([]);
   const [apiProductsStatus, setApiProductsStatus] = useState<"loading" | "loaded" | "error">("loading");
   const [usdToInrRate, setUsdToInrRate] = useState<number | null>(null);
@@ -331,7 +333,9 @@ export default function HomePage() {
           <button aria-label="Open navigation" onClick={() => setMenuOpen(!menuOpen)} className="rounded-full p-2 transition hover:bg-black/5 lg:hidden">
             {menuOpen ? <X size={21} /> : <Menu size={21} />}
           </button>
-          <a href="#" aria-label="Glotron home" className="shrink-0 text-[25px] font-black tracking-[-0.075em] sm:text-[27px]">Glo<span className="text-[#85964b]">tron</span></a>
+          <a href="#" aria-label={`${STORE_NAME} home`} className="shrink-0">
+            <BrandLogo />
+          </a>
           <nav aria-label="Main navigation" className="hidden items-center gap-1 text-sm font-semibold text-[#4d5832] lg:flex">
             {shopNavigation.map((item) => (
               <a
@@ -383,7 +387,7 @@ export default function HomePage() {
         <div className="absolute inset-x-0 top-0 h-[48%] overflow-hidden sm:inset-y-0 sm:left-auto sm:right-0 sm:h-auto sm:w-[58%]">
           <img
             src={photo("photo-1496181133206-80ce9b88a853", 1400)}
-            alt="Laptop from the GloAro tech edit"
+            alt="Laptop from the HI-FI electronics tech edit"
             className="h-full w-full object-cover object-center opacity-65 sm:opacity-90"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#22231f]/15 via-[#22231f]/30 to-[#22231f] sm:bg-gradient-to-r sm:from-[#22231f] sm:via-[#22231f]/20 sm:to-transparent" />
@@ -392,7 +396,7 @@ export default function HomePage() {
         <div className="relative mx-auto flex min-h-[390px] max-w-[1440px] items-end px-5 pb-8 pt-[190px] sm:min-h-[340px] sm:items-center sm:px-8 sm:py-12 lg:px-12">
           <div className="max-w-xl">
             <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#d6ed79]/40 bg-[#d6ed79]/10 px-3 py-1.5 text-[9px] font-semibold tracking-[0.16em] text-[#d6ed79] backdrop-blur-sm sm:text-[10px]">
-              <Sparkles size={12} /> THE GLOARO TECH EDIT
+              <Sparkles size={12} /> THE HI-FI TECH EDIT
             </p>
             <h2 className="text-3xl font-semibold leading-tight tracking-[-0.06em] sm:text-4xl lg:text-5xl">A brighter deal<br className="hidden sm:block" /> on better tech.</h2>
             <p className="mt-2 max-w-lg text-sm leading-6 text-white/70 sm:text-base">Explore special prices across smartphones, laptops, audio and more.</p>
@@ -766,8 +770,8 @@ export default function HomePage() {
         <div className="mx-auto max-w-[1440px]">
           <div className="grid gap-10 border-b border-white/15 pb-10 sm:grid-cols-2 lg:grid-cols-[1.35fr_1fr_1fr_1fr]">
             <div>
-              <a href="#" aria-label="Glotron home" className="text-4xl font-black tracking-[-0.09em]">
-                Glo<span className="text-[#d6ed79]">tron</span>
+              <a href="#" aria-label={`${STORE_NAME} home`}>
+                <BrandLogo inverse size="lg" />
               </a>
               <p className="mt-4 max-w-xs text-base font-medium leading-7 text-white/75">
                 Thoughtful electronics for everyday life. Discover smartphones, laptops, tablets and accessories in one place.
@@ -781,7 +785,7 @@ export default function HomePage() {
             </div>
             <div>
               <h3 className="mb-4 flex items-center gap-2 text-sm font-bold tracking-wide sm:text-base">
-                <ArrowUpRight size={16} className="text-[#d6ed79]" /> Explore GloAro
+                <ArrowUpRight size={16} className="text-[#d6ed79]" /> Explore HI-FI electronics
               </h3>
               <a href="#new-arrivals" className="block py-2 text-sm font-medium text-white/75 transition duration-200 hover:translate-x-1 hover:font-bold hover:text-[#d6ed79]">New arrivals</a>
               <a href="#categories" className="block py-2 text-sm font-medium text-white/75 transition duration-200 hover:translate-x-1 hover:font-bold hover:text-[#d6ed79]">Explore categories</a>
@@ -808,16 +812,15 @@ export default function HomePage() {
             </div>
             <div>
               <h3 className="mb-4 flex items-center gap-2 text-sm font-bold tracking-wide sm:text-base">
-                <Heart size={16} className="text-[#d6ed79]" /> Shopping with GloAro
+                <MapPin size={16} className="text-[#d6ed79]" /> Visit {STORE_NAME}
               </h3>
-              <p className="py-1.5 text-sm font-medium leading-6 text-white/75">Compare product ratings, prices and availability in the collection.</p>
-              <p className="py-1.5 text-sm font-medium leading-6 text-white/75">Save favorites to your wishlist and add picks to your shopping bag.</p>
-              <p className="py-1.5 text-sm font-medium leading-6 text-white/75">Product prices are displayed in INR when exchange-rate data is available.</p>
+              <address className="max-w-xs py-1.5 text-sm font-medium not-italic leading-6 text-white/75">{STORE_ADDRESS}</address>
+              <p className="py-1.5 text-sm font-medium leading-6 text-white/75">Thoughtful electronics for everyday life.</p>
             </div>
           </div>
           <div className="flex flex-col justify-between gap-3 pt-6 text-xs font-medium text-white/65 sm:flex-row sm:items-center">
-            <span>© 2026 GloAro Pvt Ltd. All rights reserved.</span>
-            <span className="font-bold text-white/85">Powered by GloAro Pvt Ltd.</span>
+            <span>© 2026 {STORE_NAME}. All rights reserved.</span>
+            <span className="font-bold text-white/85">{STORE_NAME}</span>
           </div>
         </div>
       </footer>
@@ -831,7 +834,7 @@ export default function HomePage() {
           {globotOpen && (
             <motion.section
               role="dialog"
-              aria-label="GloBot shopping assistant"
+              aria-label="HI-FI shopping assistant"
               initial={{ opacity: 0, y: 18, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 12, scale: 0.96 }}
@@ -840,9 +843,9 @@ export default function HomePage() {
               <div className="flex items-center justify-between bg-[#22231f] px-4 py-3.5 text-white">
                 <div className="flex items-center gap-3">
                   <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#d6ed79] text-lg">🤖</span>
-                  <span><span className="block text-sm font-semibold">GloBot</span><span className="mt-0.5 block text-[10px] text-white/60">Your shopping sidekick</span></span>
+                  <span><span className="block text-sm font-semibold">HI-FI assistant</span><span className="mt-0.5 block text-[10px] text-white/60">Your shopping sidekick</span></span>
                 </div>
-                <button type="button" aria-label="Close GloBot" onClick={() => setGlobotOpen(false)} className="rounded-full p-2 transition hover:bg-white/10"><X size={17} /></button>
+                <button type="button" aria-label="Close HI-FI assistant" onClick={() => setGlobotOpen(false)} className="rounded-full p-2 transition hover:bg-white/10"><X size={17} /></button>
               </div>
               <div className="p-4">
                 <p className="rounded-xl rounded-tl-sm bg-[#eeefe8] px-3.5 py-3 text-sm leading-5 text-[#41423b]">{globotReply}</p>
@@ -855,14 +858,14 @@ export default function HomePage() {
                   }} className="rounded-full border border-black/10 bg-white px-3 py-2 text-xs transition hover:border-[#758446]">Browse electronics</button>
                   <button type="button" onClick={() => setGlobotReply("You'll find our featured tech picks and current product prices in the collection below. Happy exploring!")} className="rounded-full border border-black/10 bg-white px-3 py-2 text-xs transition hover:border-[#758446]">Help me find a deal</button>
                 </div>
-                <p className="mt-4 text-[10px] leading-4 text-[#92938b]">GloBot is a demo shopping assistant.</p>
+                <p className="mt-4 text-[10px] leading-4 text-[#92938b]">The HI-FI shopping assistant is a demo.</p>
               </div>
             </motion.section>
           )}
         </AnimatePresence>
         <button
           type="button"
-          aria-label={globotOpen ? "Close GloBot assistant" : "Chat with GloBot"}
+          aria-label={globotOpen ? "Close HI-FI assistant" : "Chat with HI-FI assistant"}
           aria-expanded={globotOpen}
           onClick={() => setGlobotOpen((open) => !open)}
           className={`group relative flex h-[70px] w-[62px] items-end justify-center rounded-[23px] bg-gradient-to-br from-[#d6ed79] via-[#b6d05e] to-[#758446] pb-1.5 shadow-[0_10px_26px_rgba(58,73,27,0.34)] transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#758446] sm:h-[80px] sm:w-[70px] ${globotOpen ? "" : "globot-jump"}`}
@@ -881,7 +884,7 @@ export default function HomePage() {
           </span>
           <span className="absolute -bottom-1 h-2.5 w-10 rounded-full bg-[#22231f]/15 blur-[3px] transition-all group-hover:w-9" />
           <span className="absolute -left-16 top-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-[#22231f] px-3 py-2 text-[10px] font-semibold text-white opacity-0 shadow-lg transition-all group-hover:-left-[4.5rem] group-hover:opacity-100">
-            Ask GloBot
+            Ask HI-FI
           </span>
         </button>
       </div>

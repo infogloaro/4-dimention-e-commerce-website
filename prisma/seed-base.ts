@@ -1,5 +1,6 @@
 import { db } from "../server/db/client";
 import { PERMISSIONS, ROLE_DEFINITIONS, SYSTEM_ROLES } from "../server/auth/permissions";
+import { STORE_ADDRESS, STORE_NAME } from "../lib/store-brand";
 
 const rupees = (n: number) => Math.round(n * 100);
 const log = (m: string) => process.stdout.write(`[seed] ${m}
@@ -39,9 +40,23 @@ export async function seedShipping() {
 
 export async function seedSettings() {
   const settings: Array<[string, unknown, boolean]> = [
-    ["store.profile", { name: "4D Commerce", legalName: "GloAro Pvt Ltd", gstin: "27AAAAA0000A1Z5", address: "Mumbai, India", supportEmail: "support@4dcommerce.local", supportPhone: "+91 80000 00000" }, true],
+    ["store.profile", { name: STORE_NAME, legalName: STORE_NAME, gstin: "27AAAAA0000A1Z5", address: STORE_ADDRESS, supportEmail: "support@4dcommerce.local", supportPhone: "+91 80000 00000" }, true],
     ["store.policies", { returnWindowDays: 10, freeShippingFrom: 99900, codMaxOrderValue: 5000000 }, true],
   ];
-  for (const [key, value, isPublic] of settings) await db.storeSetting.upsert({ where: { key }, create: { key, value: value as object, isPublic }, update: {} });
+  for (const [key, value, isPublic] of settings) {
+    if (key === "store.profile") {
+      const existing = await db.storeSetting.findUnique({ where: { key } });
+      const currentProfile = existing?.value;
+      const profile = typeof currentProfile === "object" && currentProfile !== null && !Array.isArray(currentProfile)
+        ? currentProfile
+        : {};
+      await db.storeSetting.upsert({
+        where: { key },
+        create: { key, value: value as object, isPublic },
+        update: { value: { ...profile, name: STORE_NAME, legalName: STORE_NAME, address: STORE_ADDRESS } },
+      });
+      continue;
+    }
+    await db.storeSetting.upsert({ where: { key }, create: { key, value: value as object, isPublic }, update: {} });
+  }
 }
-
