@@ -2,7 +2,7 @@
  * 4D Commerce — Four Dimension Electronics
  * Development catalogue. Strictly legitimate consumer electronics only.
  * Brands and products are realistic electronics benchmarks.
- * Images use deterministic placeholders (picsum.photos) — replace via admin media upload.
+ * Images are the local illustrations in public/catalog (see product-art.ts) — replace via admin media upload.
  */
 
 export interface CategorySeed {

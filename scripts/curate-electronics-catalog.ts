@@ -4,6 +4,8 @@ import { containsProhibitedCategoryTerm } from "../server/domain/electronics-pol
 import { slugify } from "../server/core/text";
 import { createProduct } from "../server/services/catalog/admin-products";
 import { PERMISSIONS } from "../server/auth/permissions";
+import { applyProductArt } from "../prisma/apply-product-art";
+import { productMediaFor, categoryArtUrl } from "../prisma/product-art";
 import { CATEGORIES, BRANDS, PRODUCTS, ATTRIBUTES } from "../prisma/seed-data";
 import type { AuthUser } from "../server/auth/session";
 
@@ -72,8 +74,7 @@ async function main() {
           sortOrder: i,
           path: c.slug,
           depth: 0,
-          imageUrl: `https://picsum.photos/seed/cat-${c.slug}/600/600`,
-          bannerUrl: `https://picsum.photos/seed/cat-banner-${c.slug}/1600/500`,
+          imageUrl: categoryArtUrl(c.slug),
           seoTitle: `${c.name} | 4D Commerce`,
           seoDescription: c.description,
         },
@@ -95,8 +96,7 @@ async function main() {
             parentId: parent.id,
             path: `${c.slug}/${ch.slug}`,
             depth: 1,
-            imageUrl: `https://picsum.photos/seed/cat-${ch.slug}/600/600`,
-            bannerUrl: `https://picsum.photos/seed/cat-banner-${ch.slug}/1600/500`,
+            imageUrl: categoryArtUrl(ch.slug),
           },
         });
       } else {
@@ -120,8 +120,6 @@ async function main() {
           slug: b.slug,
           description: b.description,
           isFeatured: !!b.featured,
-          logoUrl: `https://picsum.photos/seed/brand-${b.slug}/240/120`,
-          bannerUrl: `https://picsum.photos/seed/brand-banner-${b.slug}/1600/400`,
         },
       });
     }
@@ -196,16 +194,7 @@ async function main() {
       };
     });
 
-    const media = Array.from({ length: 4 }, (_, i) => ({
-      type: "IMAGE" as const,
-      url: `https://picsum.photos/seed/${slug}-${i + 1}/1000/1000`,
-      thumbnailUrl: `https://picsum.photos/seed/${slug}-${i + 1}/300/300`,
-      alt: `${p.name} — angle ${i + 1}`,
-      width: 1000,
-      height: 1000,
-      isPrimary: i === 0,
-      sortOrder: i,
-    }));
+    const media = productMediaFor(slug, p.name);
 
     await createProduct(actor, {
       name: p.name,
@@ -242,6 +231,7 @@ async function main() {
   }
 
   console.log(`[curate] Added ${addedProducts} new electronics products.`);
+  console.log("[curate] Image mapping:", JSON.stringify(await applyProductArt(db)));
   console.log("[curate] Electronics catalog curation complete!");
 }
 

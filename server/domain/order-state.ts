@@ -1,4 +1,5 @@
 import type { OrderStatus } from "../db/generated/client";
+import { ORDER_STATUS } from "../../lib/order-status";
 
 /** Order lifecycle state machine. Anything not listed is an illegal transition. */
 export const ORDER_TRANSITIONS: Record<OrderStatus, readonly OrderStatus[]> = {
@@ -32,20 +33,24 @@ export function nextStatuses(from: OrderStatus): readonly OrderStatus[] {
   return ORDER_TRANSITIONS[from];
 }
 
-/** Customer-facing tracking copy for each status. */
+/**
+ * Customer-facing tracking copy for each status. Titles/descriptions come from lib/order-status.ts — the single mapping
+ * shared with the storefront and the admin console — so the API timeline and every screen use identical wording.
+ */
+const copy = (code: string, status: OrderStatus) => ({ code, title: ORDER_STATUS[status]!.label, description: ORDER_STATUS[status]!.hint ?? "" });
 export const TRACKING_COPY: Record<OrderStatus, { code: string; title: string; description: string }> = {
-  PENDING_PAYMENT: { code: "AWAITING_PAYMENT", title: "Awaiting payment", description: "We're waiting for your payment to be confirmed." },
-  PLACED: { code: "ORDER_PLACED", title: "Order placed", description: "Your order has been received." },
-  CONFIRMED: { code: "ORDER_CONFIRMED", title: "Order confirmed", description: "The seller has confirmed your order." },
-  PROCESSING: { code: "PROCESSING", title: "Processing", description: "Your items are being prepared." },
-  PACKED: { code: "PACKED", title: "Packed", description: "Your package is packed and ready for pickup by the carrier." },
-  SHIPPED: { code: "SHIPPED", title: "Shipped", description: "Your package has been handed to the carrier." },
-  OUT_FOR_DELIVERY: { code: "OUT_FOR_DELIVERY", title: "Out for delivery", description: "Your package is out for delivery today." },
-  DELIVERED: { code: "DELIVERED", title: "Delivered", description: "Your package was delivered." },
-  CANCELLED: { code: "CANCELLED", title: "Cancelled", description: "This order was cancelled." },
-  FAILED: { code: "PAYMENT_FAILED", title: "Payment failed", description: "The payment did not complete, so the order was not placed." },
-  RETURN_REQUESTED: { code: "RETURN_REQUESTED", title: "Return requested", description: "A return has been requested for this order." },
-  RETURNED: { code: "RETURNED", title: "Returned", description: "The returned items were received." },
+  PENDING_PAYMENT: copy("AWAITING_PAYMENT", "PENDING_PAYMENT"),
+  PLACED: copy("ORDER_PLACED", "PLACED"),
+  CONFIRMED: copy("ORDER_CONFIRMED", "CONFIRMED"),
+  PROCESSING: copy("PROCESSING", "PROCESSING"),
+  PACKED: copy("PACKED", "PACKED"),
+  SHIPPED: copy("SHIPPED", "SHIPPED"),
+  OUT_FOR_DELIVERY: copy("OUT_FOR_DELIVERY", "OUT_FOR_DELIVERY"),
+  DELIVERED: copy("DELIVERED", "DELIVERED"),
+  CANCELLED: copy("CANCELLED", "CANCELLED"),
+  FAILED: copy("PAYMENT_FAILED", "FAILED"),
+  RETURN_REQUESTED: copy("RETURN_REQUESTED", "RETURN_REQUESTED"),
+  RETURNED: copy("RETURNED", "RETURNED"),
 };
 
 /** The ordered stages the frontend renders in the progress timeline (cancel/return are side branches). */

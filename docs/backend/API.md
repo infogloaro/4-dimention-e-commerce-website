@@ -1,6 +1,6 @@
 # API inventory
 
-> Generated from the route handlers by `npm run docs:api` — **do not edit by hand.** 163 operations.
+> Generated from the route handlers by `npm run docs:api` — **do not edit by hand.** 170 operations.
 
 Base URL: `/api/v1`. All responses use the envelope in [FRONTEND_INTEGRATION.md](FRONTEND_INTEGRATION.md). Machine-readable spec: [openapi.json](openapi.json).
 
@@ -255,12 +255,16 @@ Base URL: `/api/v1`. All responses use the envelope in [FRONTEND_INTEGRATION.md]
 | POST | `/api/v1/admin/inventory/receive` | `inventory:write` | Record a supplier receipt (restock). `reference` is unique, so a double-submit cannot double-count stock. |
 | POST | `/api/v1/admin/media/sign` | `product:write` or `content:write` or `category:write` or `brand:write` | Ask where to upload. `mode: "direct"` (S3/Cloudinary) returns a presigned request the browser sends straight to object storage; `mode: "server"` (local dev) means POST the file to /admin/media/upload. |
 | POST | `/api/v1/admin/media/upload` | `product:write` or `content:write` or `category:write` or `brand:write` | Server-side upload (local storage provider only). File content is sniffed — the declared type is never trusted. |
+| GET | `/api/v1/admin/notification-deliveries` | `notification:manage` | Outbound email/SMS/WhatsApp delivery log. Recipients are masked and payloads are not returned. |
 | GET | `/api/v1/admin/orders` | `order:read` |  |
 | GET | `/api/v1/admin/orders/:id` | `order:read` |  |
 | POST | `/api/v1/admin/orders/:id/refunds` | `order:refund` | **Idempotency-Key required** — Manual (partial or full) refund. `Idempotency-Key` required: a retried request can never refund twice. |
 | POST | `/api/v1/admin/orders/:id/shipments` | `order:update` or `shipping:manage` |  |
 | POST | `/api/v1/admin/orders/:id/status` | `order:update` | Move an order along the state machine; illegal transitions return ORDER_STATE_INVALID with the allowed targets. |
 | POST | `/api/v1/admin/orders/:id/tracking` | `order:update` |  |
+| GET | `/api/v1/admin/orders/queues` | `order:read` | Live work queues + exceptions for the order desk (uncached, cheap counts). `since` powers the "new orders" indicator. |
+| GET | `/api/v1/admin/payments` | `order:read` | Payment attempts across all orders. Provider secrets, client payloads and card data are never returned. |
+| GET | `/api/v1/admin/payments/webhooks` | `order:read` | Received payment-provider webhook events and their processing outcome (payloads are not returned). |
 | GET | `/api/v1/admin/products` | `product:read` |  |
 | POST | `/api/v1/admin/products` | `product:write` |  |
 | GET | `/api/v1/admin/products/:id` | `product:read` |  |
@@ -271,6 +275,7 @@ Base URL: `/api/v1`. All responses use the envelope in [FRONTEND_INTEGRATION.md]
 | GET | `/api/v1/admin/questions` | `review:moderate` |  |
 | POST | `/api/v1/admin/questions/:id` | `review:moderate` | Post an official answer (also approves the question). |
 | PATCH | `/api/v1/admin/questions/:id` | `review:moderate` | Approve / reject a customer question. |
+| GET | `/api/v1/admin/refunds` | `order:refund` or `order:read` | Refund records across all orders (pending offline refunds, provider failures, completed). |
 | POST | `/api/v1/admin/refunds/:id/process` | `order:refund` | Confirm an offline refund (COD / bank transfer) has been paid out. Idempotent. |
 | GET | `/api/v1/admin/returns` | `return:manage` |  |
 | POST | `/api/v1/admin/returns/:id/advance` | `return:manage` | PICKUP_SCHEDULED → PICKED_UP → RECEIVED. RECEIVED restocks items and triggers the refund. |
@@ -281,7 +286,9 @@ Base URL: `/api/v1`. All responses use the envelope in [FRONTEND_INTEGRATION.md]
 | PUT | `/api/v1/admin/roles/:id/permissions` | `role:manage` | Replace a role's permission set. Super-admin only (`role:manage`). Audited with before/after. |
 | GET | `/api/v1/admin/settings` | `settings:manage` |  |
 | PUT | `/api/v1/admin/settings/:key` | `settings:manage` |  |
+| GET | `/api/v1/admin/shipments` | `order:read` or `shipping:manage` | Shipments across all orders, with filters for delivery exceptions and missing tracking numbers. |
 | PATCH | `/api/v1/admin/shipments/:id` | `order:update` or `shipping:manage` | Carrier-style status update (Reached hub, Out for delivery, Delivered ...) — also advances the order and feeds the tracking timeline. |
+| GET | `/api/v1/admin/system` | `settings:manage` | Integration readiness + operational signals. Reports whether credentials exist, never their values. |
 | GET | `/api/v1/admin/tickets` | `support:read` |  |
 | GET | `/api/v1/admin/tickets/:id` | `support:read` |  |
 | POST | `/api/v1/admin/tickets/:id` | `support:reply` |  |

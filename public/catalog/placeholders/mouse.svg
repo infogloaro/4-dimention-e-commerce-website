@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000" role="img" aria-labelledby="t d"><title id="t">Product image coming soon</title><desc id="d">Neutral mouse placeholder; the product photo is not available yet.</desc><defs><radialGradient id="bg" cx=".5" cy=".42" r=".75"><stop offset="0" stop-color="#f4f3ee"/><stop offset="1" stop-color="#e3e2da"/></radialGradient><filter id="blur" x="-20%" y="-200%" width="140%" height="500%"><feGaussianBlur stdDeviation="14"/></filter></defs><rect width="1000" height="1000" fill="url(#bg)"/><g transform="translate(500 450) scale(0.7)">
+    <defs><linearGradient id="bd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#cdcec7"/><stop offset=".5" stop-color="#b9bbb1"/><stop offset="1" stop-color="#787a73"/></linearGradient></defs>
+    <ellipse cx="0" cy="330" rx="200" ry="24" fill="#000" opacity=".16" filter="url(#blur)"/>
+    <path d="M0 -330 C150 -330 190 -150 190 40 C190 230 120 330 0 330 C-120 330 -190 230 -190 40 C-190 -150 -150 -330 0 -330 Z" fill="url(#bd)"/>
+    <path d="M0 -330 L0 -60" stroke="#787a73" stroke-width="5"/>
+    <path d="M-190 -60 Q0 -30 190 -60" fill="none" stroke="#787a73" stroke-width="5"/>
+    <rect x="-18" y="-250" width="36" height="110" rx="18" fill="#787a73"/><rect x="-8" y="-240" width="16" height="50" rx="8" fill="#d6ed79"/>
+    <path d="M-190 40 C-190 230 -120 330 0 330 C120 330 190 230 190 40" fill="none" stroke="#d6ed79" stroke-width="7" opacity=".75"/>
+    <path d="M-182 -30 Q-210 40 -170 120" fill="none" stroke="#dcddd8" stroke-opacity=".5" stroke-width="6" stroke-linecap="round"/></g><text x="500" y="900" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="34" letter-spacing="5" fill="#77786f">IMAGE COMING SOON</text></svg>

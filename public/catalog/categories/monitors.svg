@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000" role="img" aria-labelledby="t d"><title id="t">monitors</title><desc id="d">Illustration for the monitors category.</desc><defs><radialGradient id="bg" cx=".5" cy=".42" r=".75"><stop offset="0" stop-color="#f6f4ea"/><stop offset="1" stop-color="#dcd8c6"/></radialGradient><filter id="blur" x="-20%" y="-200%" width="140%" height="500%"><feGaussianBlur stdDeviation="14"/></filter></defs><rect width="1000" height="1000" fill="url(#bg)"/><g transform="translate(500 500) scale(0.85)">
+    <defs><linearGradient id="bd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#72756e"/><stop offset=".5" stop-color="#3b3f36"/><stop offset="1" stop-color="#262923"/></linearGradient><linearGradient id="scr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1626"/><stop offset=".55" stop-color="#27507f"/><stop offset="1" stop-color="#8fb8d8"/></linearGradient><linearGradient id="gls" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".0"/><stop offset=".5" stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+    <ellipse cx="0" cy="360" rx="340" ry="24" fill="#000" opacity=".16" filter="url(#blur)"/>
+    <path d="M-34 190 L34 190 L56 330 L-56 330 Z" fill="url(#bd)"/>
+    <path d="M-170 340 Q0 310 170 340 L180 356 Q0 372 -180 356 Z" fill="#262923"/>
+    <rect x="-420" y="-270" width="840" height="470" rx="26" fill="url(#bd)"/>
+    <rect x="-402" y="-252" width="804" height="418" rx="10" fill="url(#scr)"/>
+    <rect x="-402" y="-252" width="804" height="418" rx="10" fill="url(#gls)"/>
+    <path d="M-402 -60 Q-200 -190 0 -90 T402 -150 L402 166 L-402 166 Z" fill="#0b1626" opacity=".5"/>
+    <path d="M-402 40 Q-120 -80 120 60 T402 -20" fill="none" stroke="#d6ed79" stroke-width="5" opacity=".7"/>
+    <circle cx="0" cy="184" r="4" fill="#d6ed79"/></g></svg>

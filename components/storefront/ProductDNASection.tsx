@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
-import Image from "next/image";
 import {
   AnimatePresence,
   motion,
@@ -22,11 +21,12 @@ import {
   Sparkles,
   type LucideIcon,
 } from "lucide-react";
-import type { StoreProduct } from "@/services/product-api";
+import { SafeImg } from "./product-image";
+import type { ProductDetail } from "@/lib/shop/types";
 import styles from "./ProductDNASection.module.css";
 
 type ProductDNASectionProps = {
-  products: StoreProduct[];
+  product: ProductDetail | null;
   status: "loading" | "loaded" | "error";
 };
 
@@ -115,7 +115,15 @@ const attributeTilts = [
   [-1, -4],
 ] as const;
 
-function formatAvailableFacts(product: StoreProduct, attribute: DNAAttribute) {
+type DnaView = { id: string; name: string; brand: string | null; categoryName: string; categorySlug: string; image: string | undefined; specifications: Record<string, string>; rating: number | null; reviewCount: number; available: boolean };
+
+function toView(p: ProductDetail): DnaView {
+  const specifications: Record<string, string> = {};
+  for (const g of p.specifications) for (const i of g.items) specifications[i.name] = i.unit ? `${i.value} ${i.unit}` : i.value;
+  return { id: p.id, name: p.name, brand: p.brand?.name ?? null, categoryName: p.category.name, categorySlug: p.category.slug, image: p.media.find((m) => m.type === "IMAGE" && !m.variantId)?.url, specifications, rating: p.rating.count > 0 ? p.rating.average : null, reviewCount: p.rating.count, available: p.inStock };
+}
+
+function formatAvailableFacts(product: DnaView, attribute: DNAAttribute) {
   return Object.entries(product.specifications).filter(([label]) =>
     attribute.specificationPattern.test(label),
   );
@@ -164,7 +172,7 @@ function AttributeButton({
   );
 }
 
-export default function ProductDNASection({ products, status }: ProductDNASectionProps) {
+export default function ProductDNASection({ product: detail, status }: ProductDNASectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { margin: "-10% 0px" });
   const prefersReducedMotion = useReducedMotion();
@@ -174,18 +182,15 @@ export default function ProductDNASection({ products, status }: ProductDNASectio
   const smoothY = useSpring(pointerY, { stiffness: 85, damping: 22, mass: 0.8 });
   const rotateX = useTransform(smoothY, [-1, 1], [4, -4]);
   const rotateY = useTransform(smoothX, [-1, 1], [-5, 5]);
-  const product = useMemo(
-    () => products.find((item) => item.category === "laptops") ?? products[0] ?? null,
-    [products],
-  );
+  const product = useMemo(() => (detail ? toView(detail) : null), [detail]);
   const [lockedAttribute, setLockedAttribute] = useState(0);
   const [previewAttribute, setPreviewAttribute] = useState<number | null>(null);
-  const [imageFailed, setImageFailed] = useState(false);
+  const imageFailed = false; // SafeImg handles load failures itself (neutral placeholder)
   const activeIndex = previewAttribute ?? lockedAttribute;
   const activeAttribute = attributes[activeIndex];
   const [selectedTiltX, selectedTiltY] = attributeTilts[activeIndex];
   const availableFacts = product ? formatAvailableFacts(product, activeAttribute) : [];
-  const rating = product?.rating ? Number(product.rating) : null;
+  const rating = product?.rating ?? null;
 
   const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
     if (prefersReducedMotion || event.pointerType === "touch") return;
@@ -265,16 +270,7 @@ export default function ProductDNASection({ products, status }: ProductDNASectio
                     style={prefersReducedMotion ? undefined : { rotateX, rotateY }}
                   >
                     <div className={styles.productObject}>
-                      <Image
-                        key={product.id}
-                        src={product.images[0] ?? product.image}
-                        alt={`${product.name} by ${product.brand ?? "HI-FI electronics"}`}
-                        fill
-                        sizes="(max-width: 700px) 76vw, (max-width: 1199px) 45vw, 38vw"
-                        loading="lazy"
-                        decoding="async"
-                        onError={() => setImageFailed(true)}
-                      />
+                      <SafeImg key={product.id} src={product.image} alt={`${product.name} by ${product.brand ?? "HI-FI electronics"}`} category={product.categorySlug} width={900} height={900} className="absolute inset-0 h-full w-full" />
                     </div>
                   </motion.div>
                 </motion.div>
@@ -356,7 +352,7 @@ export default function ProductDNASection({ products, status }: ProductDNASectio
                 <h3>{activeAttribute.label}</h3>
                 <p className={styles.panelDescription}>{activeAttribute.description}</p>
                 <div className={styles.panelDivider} />
-                <p className={styles.specHeading}>SUPPLIER-LISTED DETAILS</p>
+                <p className={styles.specHeading}>LISTED DETAILS</p>
                 {product ? (
                   availableFacts.length > 0 ? (
                     <dl className={styles.specList}>

@@ -106,7 +106,7 @@ describe("critical workflow: register → login → browse → cart → checkout
     // fulfilment by staff
     const ops = await staffSession("order_manager");
     for (const status of ["CONFIRMED", "PROCESSING", "PACKED", "SHIPPED", "OUT_FOR_DELIVERY", "DELIVERED"]) {
-      const r = await call(adminStatus.POST, { method: "POST", token: ops.token, params: { id: orderId }, body: { status } });
+      const r = await call(adminStatus.POST, { method: "POST", token: ops.token, params: { id: orderId }, body: { status, note: "test fulfilment" } });
       expect(r.status, status).toBe(200);
     }
     const done = (await call(tracking.GET, { token, params: { id: orderId } })).body.data;
@@ -127,7 +127,7 @@ describe("COD", () => {
     expect(co.body.data).toMatchObject({ nextAction: "ORDER_CONFIRMED", payment: null, order: { status: "PLACED", paymentStatus: "UNPAID" } });
     expect(await availableStock(p.variants[0]!.id)).toMatchObject({ onHand: 3, reserved: 0, sold: 1 });
     const ops = await staffSession("order_manager");
-    for (const status of ["CONFIRMED", "PROCESSING", "PACKED", "SHIPPED", "OUT_FOR_DELIVERY", "DELIVERED"]) await call(adminStatus.POST, { method: "POST", token: ops.token, params: { id: co.body.data.order.id }, body: { status } });
+    for (const status of ["CONFIRMED", "PROCESSING", "PACKED", "SHIPPED", "OUT_FOR_DELIVERY", "DELIVERED"]) await call(adminStatus.POST, { method: "POST", token: ops.token, params: { id: co.body.data.order.id }, body: { status, note: "test fulfilment" } });
     const o = await db.order.findUniqueOrThrow({ where: { id: co.body.data.order.id }, include: { payments: true } });
     expect(o.paymentStatus).toBe("PAID");
     expect(o.payments[0]).toMatchObject({ provider: "COD", status: "CAPTURED" });
@@ -477,7 +477,7 @@ describe("cancellation & refunds", () => {
     expect((await call(orderById.GET, { token: intruder.token, params: { id } })).status).toBe(404);
     expect((await call(orderCancel.POST, { method: "POST", token: intruder.token, params: { id }, body: {} })).status).toBe(404);
     const ops = await staffSession("order_manager");
-    for (const status of ["CONFIRMED", "PROCESSING", "PACKED", "SHIPPED"]) await call(adminStatus.POST, { method: "POST", token: ops.token, params: { id }, body: { status } });
+    for (const status of ["CONFIRMED", "PROCESSING", "PACKED", "SHIPPED"]) await call(adminStatus.POST, { method: "POST", token: ops.token, params: { id }, body: { status, note: "test fulfilment" } });
     const late = await call(orderCancel.POST, { method: "POST", token: b.token, params: { id }, body: {} });
     expect(late.status).toBe(409);
     expect(late.body.error!.code).toBe("ORDER_NOT_CANCELLABLE");
@@ -489,7 +489,7 @@ describe("cancellation & refunds", () => {
     await addItem({ userId: b.id }, { variantId: p.variants[0]!.id });
     const co = await place(b, { paymentMethod: "COD" });
     const ops = await staffSession("order_manager");
-    const jump = await call(adminStatus.POST, { method: "POST", token: ops.token, params: { id: co.body.data.order.id }, body: { status: "DELIVERED" } });
+    const jump = await call(adminStatus.POST, { method: "POST", token: ops.token, params: { id: co.body.data.order.id }, body: { status: "DELIVERED", note: "test proof of delivery" } });
     expect(jump.status).toBe(409);
     expect(jump.body.error).toMatchObject({ code: "ORDER_STATE_INVALID", details: { from: "PLACED", allowed: ["CONFIRMED", "CANCELLED"] } });
     const detail = await call(adminOrder.GET, { token: ops.token, params: { id: co.body.data.order.id } });

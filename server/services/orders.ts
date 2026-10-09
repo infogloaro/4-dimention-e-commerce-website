@@ -20,7 +20,7 @@ export async function listOrders(userId: string, q: { status?: OrderStatus[]; se
     ...(q.search ? { OR: [{ orderNumber: { contains: q.search, mode: "insensitive" } }, { items: { some: { name: { contains: q.search, mode: "insensitive" } } } }] } : {}),
   };
   const [rows, total] = await Promise.all([
-    db.order.findMany({ where, orderBy: { createdAt: "desc" }, skip: (q.page - 1) * q.pageSize, take: q.pageSize, include: { items: { select: { id: true, name: true, imageUrl: true, quantity: true, variantName: true }, take: 4 }, _count: { select: { items: true } } } }),
+    db.order.findMany({ where, orderBy: { createdAt: "desc" }, skip: (q.page - 1) * q.pageSize, take: q.pageSize, include: { items: { select: { id: true, name: true, imageUrl: true, quantity: true, variantName: true }, take: 4 }, shipments: { select: { status: true, trackingNumber: true, carrier: true }, orderBy: { createdAt: "asc" } }, _count: { select: { items: true } } } }),
     db.order.count({ where }),
   ]);
   return {
@@ -37,6 +37,7 @@ export async function listOrders(userId: string, q: { status?: OrderStatus[]; se
       itemCount: o._count.items,
       preview: o.items,
       estimatedDelivery: { min: o.estimatedDeliveryMin, max: o.estimatedDeliveryMax },
+      shipments: o.shipments,
     })),
   };
 }
@@ -107,6 +108,20 @@ export async function cancelOrderByCustomer(user: AuthUser, orderId: string, rea
 // ───────────────────────────── staff operations ─────────────────────────────
 
 const MANUAL_TARGETS: readonly OrderStatus[] = ["CONFIRMED", "PROCESSING", "PACKED", "SHIPPED", "OUT_FOR_DELIVERY", "DELIVERED", "CANCELLED"];
+
+/**
+ * Business rules for STAFF-initiated moves (the HTTP route calls this; carrier-driven moves go through updateShipment):
+ *  - SHIPPED needs a shipment record, or a note documenting the manual fulfilment procedure;
+ *  - DELIVERED needs a delivered shipment (trusted carrier event) or a note recording proof of delivery;
+ *  - CANCELLED needs a reason.
+ * The note is stored on the status history and tracking event together with the actor and timestamp.
+ */
+export async function assertManualTransitionAllowed(orderId: string, to: OrderStatus, input: { note?: string; reason?: string }) {
+  const text = (input.note ?? "").trim();
+  if (to === "CANCELLED" && !(input.reason ?? text).trim()) throw new AppError("VALIDATION_ERROR", "A reason is required to cancel an order", { fields: [{ path: "reason", message: "Required" }] });
+  if (to === "SHIPPED" && !text && (await db.shipment.count({ where: { orderId } })) === 0) throw new AppError("VALIDATION_ERROR", "Create a shipment with carrier details, or add a note documenting the manual fulfilment", { fields: [{ path: "note", message: "Required when no shipment exists" }] });
+  if (to === "DELIVERED" && !text && (await db.shipment.count({ where: { orderId, status: "DELIVERED" } })) === 0) throw new AppError("VALIDATION_ERROR", "Record proof of delivery in the note (no carrier delivery event exists)", { fields: [{ path: "note", message: "Required without a carrier delivery event" }] });
+}
 
 export async function transitionOrder(actor: AuthUser, orderId: string, to: OrderStatus, opts: { note?: string; location?: string; reason?: string } = {}) {
   if (!MANUAL_TARGETS.includes(to)) throw new AppError("ORDER_STATE_INVALID", `Orders cannot be moved to ${to} manually`, { allowed: MANUAL_TARGETS });

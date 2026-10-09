@@ -18,6 +18,8 @@ import { createAddress } from "../server/services/customer";
 import { confirmPayment } from "../server/services/payments";
 import { mockSign } from "../server/integrations/payments/mock";
 import { reindexProduct } from "../server/services/catalog/admin-products";
+import { applyProductArt } from "./apply-product-art";
+import { productMediaFor, categoryArtUrl } from "./product-art";
 import { seedRbac, seedShipping, seedSettings } from "./seed-base";
 import { ATTRIBUTES, BRANDS, CATEGORIES, COUPONS, PRODUCTS, SYNONYMS } from "./seed-data";
 
@@ -72,16 +74,16 @@ async function seedDemo() {
   // ── taxonomy ──
   const catIds = new Map<string, string>();
   for (const [i, c] of CATEGORIES.entries()) {
-    const parent = await db.category.create({ data: { name: c.name, slug: c.slug, description: c.description, iconName: c.icon, isFeatured: !!c.featured, sortOrder: i, path: c.slug, depth: 0, imageUrl: `https://picsum.photos/seed/cat-${c.slug}/600/600`, bannerUrl: `https://picsum.photos/seed/cat-banner-${c.slug}/1600/500`, seoTitle: `${c.name} | 4D Commerce`, seoDescription: c.description } });
+    const parent = await db.category.create({ data: { name: c.name, slug: c.slug, description: c.description, iconName: c.icon, isFeatured: !!c.featured, sortOrder: i, path: c.slug, depth: 0, imageUrl: categoryArtUrl(c.slug), seoTitle: `${c.name} | 4D Commerce`, seoDescription: c.description } });
     catIds.set(c.slug, parent.id);
     for (const [j, ch] of (c.children ?? []).entries()) {
-      const child = await db.category.create({ data: { name: ch.name, slug: ch.slug, description: ch.description, iconName: ch.icon, isFeatured: !!ch.featured, sortOrder: j, parentId: parent.id, path: `${c.slug}/${ch.slug}`, depth: 1, imageUrl: `https://picsum.photos/seed/cat-${ch.slug}/600/600`, bannerUrl: `https://picsum.photos/seed/cat-banner-${ch.slug}/1600/500` } });
+      const child = await db.category.create({ data: { name: ch.name, slug: ch.slug, description: ch.description, iconName: ch.icon, isFeatured: !!ch.featured, sortOrder: j, parentId: parent.id, path: `${c.slug}/${ch.slug}`, depth: 1, imageUrl: categoryArtUrl(ch.slug) } });
       catIds.set(ch.slug, child.id);
     }
   }
   const brandIds = new Map<string, string>();
   for (const b of BRANDS) {
-    const row = await db.brand.create({ data: { name: b.name, slug: b.slug, description: b.description, isFeatured: !!b.featured, logoUrl: `https://picsum.photos/seed/brand-${b.slug}/240/120`, bannerUrl: `https://picsum.photos/seed/brand-banner-${b.slug}/1600/400` } });
+    const row = await db.brand.create({ data: { name: b.name, slug: b.slug, description: b.description, isFeatured: !!b.featured } });
     brandIds.set(b.slug, row.id);
   }
   for (const a of ATTRIBUTES) await db.attribute.create({ data: { key: a.key, name: a.name, kind: a.kind, isFilterable: true } });
@@ -123,7 +125,7 @@ async function seedDemo() {
         stock: { quantity: idx % 7 === 6 ? 0 : (p.stock ?? 20) + (idx % 5) * 3, lowStockThreshold: 5, allowBackorder: false },
       };
     });
-    const media = Array.from({ length: 4 }, (_, i) => ({ type: "IMAGE" as const, url: `https://picsum.photos/seed/${slug}-${i + 1}/1000/1000`, thumbnailUrl: `https://picsum.photos/seed/${slug}-${i + 1}/300/300`, alt: `${p.name} — view ${i + 1}`, width: 1000, height: 1000, isPrimary: i === 0, sortOrder: i }));
+    const media = productMediaFor(slug, p.name);
     const created = await createProduct(actor, {
       name: p.name,
       slug,
@@ -150,6 +152,9 @@ async function seedDemo() {
     productIds.push(created.id);
   }
   log(`${PRODUCTS.length} products created`);
+  // variant (colour) artwork + category tiles — must exist before sample orders snapshot their item images
+  const art = await applyProductArt(db);
+  if (art.unmappedProducts.length) throw new Error(`Products without artwork mapping: ${art.unmappedProducts.join(", ")}`);
 
   // curated relations & collections
   const bySlug = new Map((await db.product.findMany({ select: { id: true, slug: true } })).map((p) => [p.slug, p.id]));
@@ -161,7 +166,7 @@ async function seedDemo() {
     { name: "Flagship Mobile Studio", slug: "flagship-mobile-studio", description: "5G smartphones, OLED tablets, smartwatches and lossless audio.", slugs: ["nimbus-nova-5-pro", "nimbus-tab-11-ultra", "aurora-buds-air-2", "kora-pulse-smartwatch"], featured: false },
   ];
   for (const [i, c] of collections.entries()) {
-    const col = await db.collection.create({ data: { name: c.name, slug: c.slug, description: c.description, isFeatured: c.featured, sortOrder: i, imageUrl: `https://picsum.photos/seed/col-${c.slug}/800/800`, bannerUrl: `https://picsum.photos/seed/colb-${c.slug}/1600/600` } });
+    const col = await db.collection.create({ data: { name: c.name, slug: c.slug, description: c.description, isFeatured: c.featured, sortOrder: i } });
     await db.collectionProduct.createMany({ data: c.slugs.filter((s) => bySlug.has(s)).map((s, k) => ({ collectionId: col.id, productId: bySlug.get(s)!, sortOrder: k })) });
   }
 
@@ -176,10 +181,10 @@ async function seedDemo() {
   await db.contentBlock.createMany({
     data: [
       { type: "ANNOUNCEMENT", placement: "site.announcement", title: "Free express delivery across India above ₹999 · Extra 10% off with WELCOME10", ctaLabel: "Shop now", ctaUrl: "/products", sortOrder: 0 },
-      { type: "HERO", placement: "home.hero", title: "Four Dimension Electronics. Engineered in motion.", subtitle: "Discover flagship smartphones, creator laptops, calibrated OLED displays and audiophile sound.", mediaUrl: "https://picsum.photos/seed/hero-main/2000/1000", mobileMediaUrl: "https://picsum.photos/seed/hero-main-m/900/1200", mediaAlt: "4D Commerce electronics hero", ctaLabel: "Explore the collection", ctaUrl: "/products", sortOrder: 0, metadata: { theme: "dark", align: "left" } },
-      { type: "HERO", placement: "home.hero", title: "Acoustic Purity. Zero Noise.", subtitle: "Studio-tuned ANC headphones with lossless LDAC streaming, now up to 24% off.", mediaUrl: "https://picsum.photos/seed/hero-audio/2000/1000", mobileMediaUrl: "https://picsum.photos/seed/hero-audio-m/900/1200", mediaAlt: "Aurora headphones", ctaLabel: "Shop audio", ctaUrl: "/category/audio", sortOrder: 1, metadata: { theme: "dark", align: "right" } },
-      { type: "PROMO", placement: "home.promo", title: "Creator Desk Setup", subtitle: "OLED laptops, 4K monitors & fast NVMe storage", mediaUrl: "https://picsum.photos/seed/promo-work/1200/800", ctaLabel: "View collection", ctaUrl: "/collections/pro-creator-desk-setup", sortOrder: 0 },
-      { type: "PROMO", placement: "home.promo", title: "Competitive Gaming Rig", subtitle: "240Hz monitors, rapid keyboards & RTX graphics", mediaUrl: "https://picsum.photos/seed/promo-run/1200/800", ctaLabel: "View collection", ctaUrl: "/collections/competitive-gaming-rig", sortOrder: 1 },
+      { type: "HERO", placement: "home.hero", title: "Four Dimension Electronics. Engineered in motion.", subtitle: "Discover flagship smartphones, creator laptops, calibrated OLED displays and audiophile sound.", mediaAlt: "4D Commerce electronics hero", ctaLabel: "Explore the collection", ctaUrl: "/products", sortOrder: 0, metadata: { theme: "dark", align: "left" } },
+      { type: "HERO", placement: "home.hero", title: "Acoustic Purity. Zero Noise.", subtitle: "Studio-tuned ANC headphones with lossless LDAC streaming, now up to 24% off.", mediaAlt: "Aurora headphones", ctaLabel: "Shop audio", ctaUrl: "/category/audio", sortOrder: 1, metadata: { theme: "dark", align: "right" } },
+      { type: "PROMO", placement: "home.promo", title: "Creator Desk Setup", subtitle: "OLED laptops, 4K monitors & fast NVMe storage", ctaLabel: "View collection", ctaUrl: "/collections/pro-creator-desk-setup", sortOrder: 0 },
+      { type: "PROMO", placement: "home.promo", title: "Competitive Gaming Rig", subtitle: "240Hz monitors, rapid keyboards & RTX graphics", ctaLabel: "View collection", ctaUrl: "/collections/competitive-gaming-rig", sortOrder: 1 },
       { type: "BANNER", placement: "home.flash", title: "Electronics Flash Deals — ends soon", subtitle: "Up to 30% off selected headphones, chargers & monitors", ctaLabel: "Grab the deals", ctaUrl: "/products?sort=discount", endsAt: new Date(Date.now() + 3 * 86_400_000), sortOrder: 0 },
     ],
   });

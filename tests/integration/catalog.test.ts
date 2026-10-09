@@ -54,7 +54,7 @@ describe("product listing", () => {
     const res = await call(products.GET, { query: { q: "Studio Headphones" } });
     const card = res.body.data[0];
     expect(card).toMatchObject({ name: "Aurora Studio Headphones", slug: slugs.headphones, brand: { name: "Aurora" }, inStock: true, stockStatus: "IN_STOCK", price: { price: 1_899_900, compareAtPrice: 2_499_900, discountPercent: 24, onSale: true } });
-    expect(card.image.url).toMatch(/^https:/);
+    expect(card.image.url).toMatch(/^(https:|\/)/); // absolute CDN URL or a site-relative path
     expect(card.badges.map((b: any) => b.key)).toContain("sale");
     expect(JSON.stringify(card)).not.toMatch(/costPrice|passwordHash|searchText/);
   });

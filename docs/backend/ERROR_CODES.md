@@ -6,7 +6,6 @@ Every failure returns `{ "success": false, "error": { "code", "message", "detail
 
 | Code | HTTP |
 |---|---|
-| **generic** | |
 | `BAD_REQUEST` | 400 |
 | `VALIDATION_ERROR` | 422 |
 | `UNAUTHENTICATED` | 401 |
@@ -20,7 +19,6 @@ Every failure returns `{ "success": false, "error": { "code", "message", "detail
 | `INTERNAL_ERROR` | 500 |
 | `SERVICE_UNAVAILABLE` | 503 |
 | `CSRF_REJECTED` | 403 |
-| **auth** | |
 | `INVALID_CREDENTIALS` | 401 |
 | `ACCOUNT_LOCKED` | 423 |
 | `ACCOUNT_DISABLED` | 403 |
@@ -29,7 +27,6 @@ Every failure returns `{ "success": false, "error": { "code", "message", "detail
 | `INVALID_TOKEN` | 400 |
 | `EMAIL_NOT_VERIFIED` | 403 |
 | `WEAK_PASSWORD` | 422 |
-| **catalog** | |
 | `PRODUCT_NOT_FOUND` | 404 |
 | `VARIANT_NOT_FOUND` | 404 |
 | `CATEGORY_NOT_FOUND` | 404 |
@@ -39,11 +36,12 @@ Every failure returns `{ "success": false, "error": { "code", "message", "detail
 | `SKU_TAKEN` | 409 |
 | `CATEGORY_NOT_EMPTY` | 409 |
 | `CATEGORY_CYCLE` | 422 |
-| **inventory** | |
+| `NON_ELECTRONICS_CATEGORY_REJECTED` | 422 |
+| `NON_ELECTRONICS_PRODUCT_REJECTED` | 422 |
+| `INVALID_PRODUCT_CONDITION` | 422 |
 | `OUT_OF_STOCK` | 409 |
 | `INSUFFICIENT_STOCK` | 409 |
 | `INVALID_STOCK_ADJUSTMENT` | 422 |
-| **cart / checkout** | |
 | `CART_EMPTY` | 422 |
 | `CART_ITEM_NOT_FOUND` | 404 |
 | `PRICE_CHANGED` | 409 |
@@ -56,7 +54,6 @@ Every failure returns `{ "success": false, "error": { "code", "message", "detail
 | `CHECKOUT_FAILED` | 409 |
 | `IDEMPOTENCY_KEY_REUSED` | 422 |
 | `REQUEST_IN_PROGRESS` | 409 |
-| **coupons** | |
 | `COUPON_NOT_FOUND` | 404 |
 | `COUPON_INVALID` | 422 |
 | `COUPON_EXPIRED` | 422 |
@@ -67,9 +64,7 @@ Every failure returns `{ "success": false, "error": { "code", "message", "detail
 | `COUPON_NOT_STACKABLE` | 422 |
 | `COUPON_FIRST_ORDER_ONLY` | 422 |
 | `COUPON_CODE_TAKEN` | 409 |
-| **wishlist** | |
 | `WISHLIST_ITEM_NOT_FOUND` | 404 |
-| **orders / payments** | |
 | `ORDER_NOT_FOUND` | 404 |
 | `ORDER_STATE_INVALID` | 409 |
 | `ORDER_NOT_CANCELLABLE` | 409 |
@@ -81,7 +76,6 @@ Every failure returns `{ "success": false, "error": { "code", "message", "detail
 | `WEBHOOK_SIGNATURE_INVALID` | 401 |
 | `REFUND_NOT_ALLOWED` | 409 |
 | `REFUND_EXCEEDS_PAID` | 422 |
-| **returns** | |
 | `RETURN_NOT_FOUND` | 404 |
 | `RETURN_NOT_ELIGIBLE` | 422 |
 | `RETURN_STATE_INVALID` | 409 |
@@ -89,7 +83,6 @@ Every failure returns `{ "success": false, "error": { "code", "message", "detail
 | `REVIEW_ALREADY_EXISTS` | 409 |
 | `REVIEW_STATE_INVALID` | 409 |
 | `QUESTION_NOT_FOUND` | 404 |
-| **coupons/admin misc** | |
 | `USER_NOT_FOUND` | 404 |
 | `ROLE_NOT_FOUND` | 404 |
 | `SYSTEM_ROLE_PROTECTED` | 409 |

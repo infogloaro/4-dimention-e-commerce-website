@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000" role="img" aria-labelledby="t d"><title id="t">Product image coming soon</title><desc id="d">Neutral phone placeholder; the product photo is not available yet.</desc><defs><radialGradient id="bg" cx=".5" cy=".42" r=".75"><stop offset="0" stop-color="#f4f3ee"/><stop offset="1" stop-color="#e3e2da"/></radialGradient><filter id="blur" x="-20%" y="-200%" width="140%" height="500%"><feGaussianBlur stdDeviation="14"/></filter></defs><rect width="1000" height="1000" fill="url(#bg)"/><g transform="translate(500 450) scale(0.7)">
+    <defs><linearGradient id="bd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#cdcec7"/><stop offset=".5" stop-color="#b9bbb1"/><stop offset="1" stop-color="#787a73"/></linearGradient><linearGradient id="scr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1626"/><stop offset=".55" stop-color="#27507f"/><stop offset="1" stop-color="#8fb8d8"/></linearGradient><linearGradient id="gls" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".0"/><stop offset=".5" stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+    <ellipse cx="0" cy="330" rx="330" ry="32" fill="#000" opacity=".16" filter="url(#blur)"/>
+    <g transform="translate(150 10) rotate(7)">
+      <rect x="-140" y="-300" width="280" height="600" rx="48" fill="url(#bd)"/>
+      <rect x="-134" y="-294" width="268" height="588" rx="43" fill="none" stroke="#dcddd8" stroke-opacity=".35" stroke-width="3"/>
+      <rect x="-112" y="-272" width="126" height="134" rx="36" fill="#787a73"/>
+      <circle cx="-72" cy="-232" r="26" fill="#161616" stroke="#dcddd8" stroke-opacity=".6" stroke-width="3"/><circle cx="-72" cy="-232" r="13" fill="#2b3a55"/><circle cx="-77" cy="-237" r="4" fill="#fff" opacity=".8"/><circle cx="-72" cy="-176" r="26" fill="#161616" stroke="#dcddd8" stroke-opacity=".6" stroke-width="3"/><circle cx="-72" cy="-176" r="13" fill="#2b3a55"/><circle cx="-77" cy="-181" r="4" fill="#fff" opacity=".8"/><circle cx="-18" cy="-204" r="26" fill="#161616" stroke="#dcddd8" stroke-opacity=".6" stroke-width="3"/><circle cx="-18" cy="-204" r="13" fill="#2b3a55"/><circle cx="-23" cy="-209" r="4" fill="#fff" opacity=".8"/>
+      <circle cx="40" cy="-176" r="9" fill="#f2f2f2" opacity=".9"/>
+    </g>
+    <g transform="translate(-130 30) rotate(-5)">
+      <rect x="-146" y="-312" width="292" height="624" rx="52" fill="url(#bd)"/>
+      <rect x="-134" y="-300" width="268" height="600" rx="42" fill="url(#scr)"/>
+      <rect x="-134" y="-300" width="268" height="600" rx="42" fill="url(#gls)"/>
+      <rect x="-34" y="-282" width="68" height="20" rx="10" fill="#050505"/>
+      <rect x="-110" y="-190" width="220" height="96" rx="14" fill="#fff" opacity=".22"/><rect x="-110" y="-80" width="104" height="104" rx="14" fill="#fff" opacity=".22"/><rect x="6" y="-80" width="104" height="104" rx="14" fill="#fff" opacity=".22"/><rect x="-110" y="40" width="220" height="64" rx="14" fill="#fff" opacity=".22"/>
+      <rect x="-52" y="272" width="104" height="6" rx="3" fill="#fff" opacity=".7"/>
+    </g></g><text x="500" y="900" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="34" letter-spacing="5" fill="#77786f">IMAGE COMING SOON</text></svg>

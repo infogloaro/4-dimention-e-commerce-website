@@ -46,7 +46,7 @@ async function orderDelivered(b: Buyer, opts: { method?: "COD" | "ONLINE"; qty?:
     await call(confirm.POST, { method: "POST", token: b.token, body: { paymentId: pay.id, providerPayload: { outcome: "success", signature: mockSign(pay.providerPaymentId!, "success") } } });
   }
   const ops = await staffSession("order_manager");
-  for (const status of ["CONFIRMED", "PROCESSING", "PACKED", "SHIPPED", "OUT_FOR_DELIVERY", "DELIVERED"]) await call(adminStatus.POST, { method: "POST", token: ops.token, params: { id: orderId }, body: { status } });
+  for (const status of ["CONFIRMED", "PROCESSING", "PACKED", "SHIPPED", "OUT_FOR_DELIVERY", "DELIVERED"]) await call(adminStatus.POST, { method: "POST", token: ops.token, params: { id: orderId }, body: { status, note: "test fulfilment" } });
   return { p, orderId, ops };
 }
 
@@ -188,7 +188,7 @@ describe("shipments & tracking timeline", () => {
     const co = await call(checkout.POST, { method: "POST", token: b.token, headers: { "idempotency-key": randomUUID() }, body: { addressId: b.addressId, paymentMethod: "COD" } });
     const orderId = co.body.data.order.id;
     const ops = await staffSession("order_manager");
-    for (const status of ["CONFIRMED", "PROCESSING", "PACKED"]) await call(adminStatus.POST, { method: "POST", token: ops.token, params: { id: orderId }, body: { status } });
+    for (const status of ["CONFIRMED", "PROCESSING", "PACKED"]) await call(adminStatus.POST, { method: "POST", token: ops.token, params: { id: orderId }, body: { status, note: "test fulfilment" } });
     const sh = await call(shipments.POST, { method: "POST", token: ops.token, params: { id: orderId }, body: { carrier: "BlueDart", trackingNumber: "BD123456789" } });
     expect(sh.status).toBe(201);
     await call(shipmentUpdate.PATCH, { method: "PATCH", token: ops.token, params: { id: sh.body.data.id }, body: { status: "REACHED_HUB", location: "Pune Hub", description: "Arrived at sorting hub" } });

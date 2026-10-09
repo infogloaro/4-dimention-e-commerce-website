@@ -4431,6 +4431,41 @@
         }
       }
     },
+    "/api/v1/admin/notification-deliveries": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Outbound email/SMS/WhatsApp delivery log. Recipients are masked and payloads are not returned.",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "notification:manage"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
     "/api/v1/admin/orders": {
       "get": {
         "tags": [
@@ -4713,6 +4748,111 @@
         ],
         "x-required-permissions": [
           "order:update"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/orders/queues": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Live work queues + exceptions for the order desk (uncached, cheap counts). `since` powers the \"new orders\" indicator.",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "order:read"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/payments": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Payment attempts across all orders. Provider secrets, client payloads and card data are never returned.",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "order:read"
+        ],
+        "x-permission-mode": "all",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/payments/webhooks": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Received payment-provider webhook events and their processing outcome (payloads are not returned).",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "order:read"
         ],
         "x-permission-mode": "all",
         "responses": {
@@ -5181,6 +5321,42 @@
         }
       }
     },
+    "/api/v1/admin/refunds": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Refund records across all orders (pending offline refunds, provider failures, completed).",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "order:refund",
+          "order:read"
+        ],
+        "x-permission-mode": "any",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
     "/api/v1/admin/refunds/{id}/process": {
       "post": {
         "tags": [
@@ -5631,6 +5807,42 @@
         }
       }
     },
+    "/api/v1/admin/shipments": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Shipments across all orders, with filters for delivery exceptions and missing tracking numbers.",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "order:read",
+          "shipping:manage"
+        ],
+        "x-permission-mode": "any",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
     "/api/v1/admin/shipments/{id}": {
       "patch": {
         "tags": [
@@ -5669,6 +5881,41 @@
           "shipping:manage"
         ],
         "x-permission-mode": "any",
+        "responses": {
+          "200": {
+            "description": "Success envelope { success: true, data, meta? }"
+          },
+          "401": {
+            "description": "UNAUTHENTICATED"
+          },
+          "403": {
+            "description": "FORBIDDEN"
+          },
+          "422": {
+            "description": "VALIDATION_ERROR"
+          }
+        }
+      }
+    },
+    "/api/v1/admin/system": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "Integration readiness + operational signals. Reports whether credentials exist, never their values.",
+        "parameters": [],
+        "security": [
+          {
+            "cookieAuth": []
+          },
+          {
+            "bearerAuth": []
+          }
+        ],
+        "x-required-permissions": [
+          "settings:manage"
+        ],
+        "x-permission-mode": "all",
         "responses": {
           "200": {
             "description": "Success envelope { success: true, data, meta? }"

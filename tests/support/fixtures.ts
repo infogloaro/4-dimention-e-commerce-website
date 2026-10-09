@@ -111,7 +111,7 @@ export async function makeProduct(o: ProductOpts = {}) {
     tags: o.tags ?? [],
     attributes: [],
     variants,
-    media: [{ type: "IMAGE", url: "https://picsum.photos/seed/t/800/800", alt: name, isPrimary: true, sortOrder: 0 }],
+    media: [{ type: "IMAGE", url: "/catalog/placeholders/product.svg", alt: name, isPrimary: true, sortOrder: 0 }],
   });
   const product = await db.product.findUniqueOrThrow({ where: { id: res.id }, include: { variants: { orderBy: { sortOrder: "asc" } } } });
   invalidate();

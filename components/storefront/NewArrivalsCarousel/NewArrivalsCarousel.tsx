@@ -2,35 +2,34 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, LoaderCircle } from "lucide-react";
-import type { StoreProduct } from "@/services/product-api";
+import type { ProductCard as Product } from "@/lib/shop/types";
 import ProductCard from "./ProductCard";
 import ProductDetailsModal from "./ProductDetailsModal";
 import styles from "./carousel.module.css";
 
 type NewArrivalsCarouselProps = {
-  products: StoreProduct[];
+  products: Product[];
   status: "loading" | "loaded" | "error";
-  exchangeRate: number | null;
-  wishlist: StoreProduct["id"][];
-  onAddToCart: (product: StoreProduct) => void;
-  onBuyNow: (product: StoreProduct) => void;
-  onToggleWishlist: (productId: StoreProduct["id"]) => void;
+  wishlist: ReadonlySet<string>;
+  onAddToCart: (product: Product) => void;
+  onBuyNow: (product: Product) => void;
+  onToggleWishlist: (productId: string) => void;
 };
 
 const ROTATION_MS = 1000;
 const ROTATION_INTERVAL_MS = 4500;
 const RESUME_DELAY_MS = 4200;
 
-function distributeProducts(products: StoreProduct[], limit = 8) {
-  const groups = new Map<string, StoreProduct[]>();
+function distributeProducts(products: Product[], limit = 8) {
+  const groups = new Map<string, Product[]>();
   for (const product of products) {
-    const group = groups.get(product.category) ?? [];
+    const group = groups.get(product.category.slug) ?? [];
     group.push(product);
-    groups.set(product.category, group);
+    groups.set(product.category.slug, group);
   }
 
   const categories = Array.from(groups.values());
-  const selected: StoreProduct[] = [];
+  const selected: Product[] = [];
   for (let round = 0; selected.length < limit; round += 1) {
     let added = false;
     for (const group of categories) {
@@ -48,7 +47,6 @@ function distributeProducts(products: StoreProduct[], limit = 8) {
 export default function NewArrivalsCarousel({
   products,
   status,
-  exchangeRate,
   wishlist,
   onAddToCart,
   onBuyNow,
@@ -56,7 +54,7 @@ export default function NewArrivalsCarousel({
 }: NewArrivalsCarouselProps) {
   const showcaseProducts = useMemo(() => distributeProducts(products), [products]);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [modalProduct, setModalProduct] = useState<StoreProduct | null>(null);
+  const [modalProduct, setModalProduct] = useState<Product | null>(null);
   const [autoPaused, setAutoPaused] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -159,12 +157,12 @@ export default function NewArrivalsCarousel({
     shiftProduct(distance > 0 ? -1 : 1);
   };
 
-  const handleAddToCart = (product: StoreProduct) => {
+  const handleAddToCart = (product: Product) => {
     setModalProduct(null);
     onAddToCart(product);
   };
 
-  const handleBuyNow = (product: StoreProduct) => {
+  const handleBuyNow = (product: Product) => {
     setModalProduct(null);
     onBuyNow(product);
   };
@@ -184,7 +182,7 @@ export default function NewArrivalsCarousel({
               <h2 id="new-arrivals-heading">New Arrivals</h2>
               <span className={styles.justInBadge}>JUST IN</span>
             </div>
-            <p className={styles.subtitle}>Discover the latest electronics, appliances &amp; smart technology.</p>
+            <p className={styles.subtitle}>The newest electronics in our catalogue, straight from live inventory.</p>
           </div>
           <p className={styles.headerNote}>A rotating edit of what’s new<br />and worth a closer look.</p>
         </div>
@@ -215,7 +213,6 @@ export default function NewArrivalsCarousel({
                   active={index === activeIndex}
                   angle={index * step}
                   distance={distance}
-                  exchangeRate={exchangeRate}
                   onSelect={() => {
                     if (swipedRef.current) {
                       swipedRef.current = false;
@@ -285,8 +282,7 @@ export default function NewArrivalsCarousel({
 
       <ProductDetailsModal
         product={modalProduct}
-        exchangeRate={exchangeRate}
-        isWishlisted={modalProduct ? wishlist.includes(modalProduct.id) : false}
+        isWishlisted={modalProduct ? wishlist.has(modalProduct.id) : false}
         onClose={closeModal}
         onAddToCart={handleAddToCart}
         onBuyNow={handleBuyNow}

@@ -40,6 +40,12 @@ import * as adminTickets from "@/app/api/v1/admin/tickets/route";
 import * as adminSections from "@/app/api/v1/admin/content/sections/route";
 import * as adminBlocks from "@/app/api/v1/admin/content/blocks/route";
 import * as adminSign from "@/app/api/v1/admin/media/sign/route";
+import * as adminPayments from "@/app/api/v1/admin/payments/route";
+import * as adminWebhooks from "@/app/api/v1/admin/payments/webhooks/route";
+import * as adminRefunds from "@/app/api/v1/admin/refunds/route";
+import * as adminShipments from "@/app/api/v1/admin/shipments/route";
+import * as adminDeliveries from "@/app/api/v1/admin/notification-deliveries/route";
+import * as adminSystem from "@/app/api/v1/admin/system/route";
 import * as login from "@/app/api/v1/auth/login/route";
 import * as home from "@/app/api/v1/home/route";
 import * as publicProducts from "@/app/api/v1/products/route";
@@ -57,6 +63,12 @@ const dummyProductBody = { name: "RBAC probe", categoryId: UUID, variants: [{ sk
 /** Every admin endpoint with the permission it must demand. A role may call it iff it holds that permission. */
 const MATRIX: Array<{ name: string; handler: Handler; perm: Permission[]; opts: CallOptions }> = [
   { name: "dashboard", handler: adminDashboard.GET, perm: ["dashboard:read"], opts: {} },
+  { name: "payments list", handler: adminPayments.GET, perm: ["order:read"], opts: {} },
+  { name: "payment webhooks", handler: adminWebhooks.GET, perm: ["order:read"], opts: {} },
+  { name: "refunds list", handler: adminRefunds.GET, perm: ["order:refund", "order:read"], opts: {} },
+  { name: "shipments list", handler: adminShipments.GET, perm: ["order:read", "shipping:manage"], opts: {} },
+  { name: "notification deliveries", handler: adminDeliveries.GET, perm: ["notification:manage"], opts: {} },
+  { name: "system health", handler: adminSystem.GET, perm: ["settings:manage"], opts: {} },
   { name: "analytics sales", handler: adminSales.GET, perm: ["analytics:read"], opts: {} },
   { name: "analytics products", handler: adminAnalyticsProducts.GET, perm: ["analytics:read"], opts: {} },
   { name: "analytics customers", handler: adminAnalyticsCustomers.GET, perm: ["analytics:read"], opts: {} },
